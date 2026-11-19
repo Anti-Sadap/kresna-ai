@@ -19,6 +19,7 @@
     --danger: #ff2a55; 
     --danger-dim: rgba(255, 42, 85, 0.2);
     --warning: #ffcc00;
+    --green: #00ff88;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent; user-select: none;}
   html,body{margin:0;height:100%;background:var(--bg);color:var(--text);
@@ -86,39 +87,20 @@
   .statusbar.alert{color:var(--danger); border-color:var(--danger); animation: pulseAlert 1s infinite;}
   @keyframes pulseAlert { 0%,100%{box-shadow: 0 0 10px var(--danger-dim);} 50%{box-shadow: 0 0 30px var(--danger);} }
 
-  /* Video Wrapper */
   .video-wrap{position:relative;flex:1;background:#020305;overflow:hidden;}
-  
-  /* Video Utama (Full Screen) */
   #remoteVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000;z-index:1;}
   
-  /* PIP Container (Bisa Digeser) */
   #pipContainer {
     position: absolute; right: 16px; top: 70px; width: 30%; max-width: 130px;
-    aspect-ratio: 3/4; z-index: 15; transition: none; /* No transition for drag */
-    touch-action: none; /* Crucial for smooth drag */
+    aspect-ratio: 3/4; z-index: 15; transition: none;
+    touch-action: none; cursor: pointer;
   }
-  
   #localVideo {
     width: 100%; height: 100%; object-fit: cover; border-radius: 12px; 
     border: 2px solid var(--neon); background: #111; 
-    box-shadow: 0 0 20px var(--neon-dim); cursor: grab;
-    display: block;
+    box-shadow: 0 0 20px var(--neon-dim);
+    display: block; pointer-events: none;
   }
-
-  /* Tombol ganti kamera depan/belakang di pojok kanan atas PIP */
-  #swapViewBtn {
-    position: absolute; top: 7px; right: 7px;
-    width: 32px; height: 32px; padding: 0; border-radius: 50%;
-    background: rgba(18, 22, 28, 0.42);
-    border: 1px solid rgba(255,255,255,0.42);
-    color: rgba(255,255,255,0.96); z-index: 20; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.22);
-  }
-  #swapViewBtn svg { width: 19px; height: 19px; fill: currentColor; }
-  #swapViewBtn:active { transform: scale(0.9); background: rgba(255,255,255,0.22); }
 
   .audio-avatar{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
     background:radial-gradient(circle at 50% 50%,#0a1520,#020305); z-index: 0;}
@@ -129,29 +111,47 @@
   @keyframes pulseAnim{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
   @keyframes ringAnim{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.8);opacity:0}}
 
-  .watermark{position:absolute;inset:-50%;pointer-events:none;z-index:2; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 50px; transform: rotate(-30deg); opacity: 0.15;}
-  .wm-text{font-size: 14px; font-family: monospace; color: #fff; white-space: nowrap; font-weight: bold; letter-spacing: 2px;}
-  
   .fp{position:absolute;left:16px;top:65px;background:rgba(0,0,0,0.5);
     backdrop-filter:blur(10px);padding:6px 10px;border-radius:8px;font-size:9px;
-    color:var(--muted);z-index:10; border:1px solid rgba(255,255,255,0.1); line-height: 1.3; opacity: 0.8;}
+    color:var(--muted);z-index:10; border:1px solid rgba(255,255,255,0.1); line-height: 1.3; opacity: 0.9;}
+  .fp .p2p{color:var(--green);letter-spacing:1.5px;font-weight:800;font-size:10px;text-shadow:0 0 8px var(--green);display:block;margin-bottom:2px}
   .fp b{color:var(--neon);display:block;font-size:11px;letter-spacing:1.5px; font-family:monospace; margin-top: 2px;}
 
-  .controls{display:flex;justify-content:center;align-items:center;gap:12px;padding:16px 12px calc(20px + env(safe-area-inset-bottom));
-    background:linear-gradient(to top, rgba(3,5,10,0.95) 20%, transparent); position: absolute; bottom: 0; left: 0; right: 0; z-index: 10;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);}
+  /* ---------- CONTROLS STYLE ---------- */
+  .controls {
+    display: flex; justify-content: center; align-items: center; gap: 16px;
+    padding: 16px 12px calc(20px + env(safe-area-inset-bottom));
+    background: linear-gradient(to top, rgba(3,5,10,0.95) 20%, transparent);
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 10;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
   .controls.hide { transform: translateY(120%); }
   
-  .ctrl{width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);
-    background:rgba(255,255,255,0.08); backdrop-filter:blur(10px); color:#fff; font-size:22px; cursor:pointer;
-    display:flex;align-items:center;justify-content:center;transition:.2s; position: relative;}
-  .ctrl svg { width: 20px; height: 20px; fill: currentColor; transition: 0.2s; }
-  .ctrl:active{transform:scale(.9);}
-  .ctrl.off{background:var(--danger-dim); border-color:var(--danger); color:var(--danger); box-shadow: 0 0 15px var(--danger-dim);}
-  .ctrl.active{background:var(--neon-dim); border-color:var(--neon); color:var(--neon); box-shadow: 0 0 15px var(--neon-dim);}
-  .ctrl.danger{background:var(--danger); border-color:var(--danger); color:#fff;width:auto;
-    border-radius:30px;padding:0 20px;font-size:12px;font-weight:800; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 0 15px var(--danger-dim);}
-  .ctrl.danger:active{box-shadow: 0 0 25px var(--danger);}
+  .ctrl {
+    width: 48px; height: 48px; border-radius: 50%; border: none;
+    background: transparent; color: #fff; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; position: relative;
+  }
+  .ctrl svg {
+    width: 24px; height: 24px; fill: none; stroke: currentColor;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: 0.2s;
+  }
+  .ctrl:active { transform: scale(0.9); }
+
+  /* Mic, Video, Speaker: hijau saat aktif, merah saat mati */
+  .ctrl.ok { color: var(--green); }
+  .ctrl.off { color: var(--danger); }
+
+  /* Flip kamera: merah saat kamera belakang aktif */
+  .ctrl.swap { background: rgba(0, 240, 255, 0.15); color: var(--neon); }
+  .ctrl.swap.rear { background: var(--danger-dim); color: var(--danger); box-shadow: 0 0 14px var(--danger-dim); }
+
+  /* Tutup telepon: gagang hijau tanpa garis, merah + garis miring saat diklik */
+  .ctrl.end { color: var(--green); }
+  .ctrl.end svg, .ctrl.end svg * { stroke: var(--green); }
+  .ctrl.end.pressed { color: var(--danger); background: var(--danger-dim); box-shadow: 0 0 22px var(--danger); transform: scale(.92); }
+  .ctrl.end.pressed svg, .ctrl.end.pressed svg * { stroke: var(--danger); }
 
   #swipeIndicator {
     position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
@@ -203,11 +203,28 @@
     background:rgba(0,0,0,0.8);backdrop-filter:blur(10px); letter-spacing: 2px;
   }
 
-  #ended{align-items:center;justify-content:center;padding:20px;text-align:center}
-  #ended .icon{font-size:60px;margin-bottom:20px; filter: drop-shadow(0 0 20px var(--neon));}
-  #ended h2{margin:0 0 12px;font-size:22px; color: var(--neon); letter-spacing: 1px;}
-  #ended p{color:var(--muted);font-size:14px;max-width:320px;line-height:1.6}
-  #ended button{margin-top:30px;max-width:280px}
+  /* ---------- PURGE / TOTAL ERASURE SCREEN ---------- */
+  #purge{position:fixed;inset:0;z-index:300;background:#000;display:none;flex-direction:column;overflow:hidden;font-family:'Courier New',monospace;color:var(--neon)}
+  #purge.on{display:flex}
+  #purgeCanvas{position:absolute;inset:0;width:100%;height:100%;opacity:.6}
+  #purge .vignette{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,transparent 15%,#000 95%);pointer-events:none}
+  #purge .panel{position:relative;z-index:2;margin:auto;width:min(92vw,440px);padding:20px;border:1px solid var(--neon);border-radius:14px;background:rgba(0,10,16,.8);backdrop-filter:blur(8px);box-shadow:0 0 40px var(--neon-dim),inset 0 0 30px rgba(0,240,255,.06)}
+  #purge .ptitle{font-size:12px;letter-spacing:3px;font-weight:800;text-align:center;color:#ff2a55;text-shadow:0 0 12px #ff2a55}
+  #purge .ptitle.done{color:var(--green);text-shadow:0 0 14px var(--green)}
+  #purge .bar{height:6px;border-radius:4px;background:rgba(0,240,255,.12);margin:14px 0 6px;overflow:hidden}
+  #purge .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff2a55,#ffcc00,#00f0ff);box-shadow:0 0 12px var(--neon)}
+  #purge .pct{text-align:right;font-size:11px;color:var(--muted)}
+  #purge .log{height:200px;overflow:hidden;font-size:11px;line-height:1.7;display:flex;flex-direction:column;justify-content:flex-end;margin-top:8px}
+  #purge .log div{white-space:nowrap;overflow:hidden;animation:slideH .45s ease-out both}
+  #purge .log .ok{color:var(--green)}
+  #purge .sec{margin-top:10px;text-align:center;font-size:10px;letter-spacing:2px;color:var(--muted)}
+  @keyframes slideH{from{transform:translateX(60%);opacity:0}to{transform:none;opacity:1}}
+  #purge .hexrow{position:relative;z-index:2;height:18px;flex:none;overflow:hidden;font-size:10px;color:rgba(0,240,255,.6);white-space:nowrap}
+  #purge .hexrow span{display:inline-block;animation:hexmove 9s linear infinite}
+  @keyframes hexmove{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
+  #purge.exit .panel{animation:collapseP 1s ease-in forwards}
+  #purge.exit #purgeCanvas{transition:opacity 1s;opacity:0}
+  @keyframes collapseP{0%{transform:scale(1);opacity:1}55%{transform:scaleX(1) scaleY(.02);opacity:1;filter:brightness(4)}100%{transform:scale(0);opacity:0}}
 
   .toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(20px);
     background:rgba(0,240,255,0.9);color:#000;font-weight:bold;padding:12px 24px;border-radius:30px;
@@ -233,11 +250,11 @@
     <label>Mode Transmisi</label>
     <div class="modes">
       <button class="mode active" data-mode="audio">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
         Suara
       </button>
       <button class="mode" data-mode="video">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
         Video
       </button>
     </div>
@@ -266,27 +283,20 @@
   </div>
   
   <div class="video-wrap" id="videoWrap">
-    <!-- Video Utama (Full Screen) -->
     <video id="remoteVideo" autoplay playsinline></video>
     
-    <!-- PIP Container (Bisa Digeser) -->
     <div id="pipContainer" class="hidden">
-      <button id="swapViewBtn" type="button" title="Ganti kamera depan / belakang" aria-label="Ganti kamera depan atau belakang">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6V3L8 7l4 4V8c2.76 0 5 2.24 5 5 0 .72-.15 1.4-.43 2.02l1.46 1.46A6.96 6.96 0 0 0 19 13c0-3.87-3.13-7-7-7Zm-5 7c0-.72.15-1.4.43-2.02L5.97 9.52A6.96 6.96 0 0 0 5 13c0 3.87 3.13 7 7 7v3l4-4-4-4v3c-2.76 0-5-2.24-5-5Z"/></svg>
-      </button>
       <video id="localVideo" autoplay playsinline muted></video>
     </div>
 
     <div id="audioAvatar" class="audio-avatar"><div class="pulse"></div></div>
     
-    <div class="watermark" id="watermark" aria-hidden="true"></div>
-    
     <div class="fp" id="fpBox" style="display:none">
+      <span class="p2p">🔐 SECURITY P2P</span>
       Cryptographic Fingerprint:
       <b id="fpValue">—</b>
     </div>
 
-    <!-- 🚨 CYBER ATTACK ALERT HUD -->
     <div id="cyberAlert" class="hidden">
       <div class="scanlines"></div>
       <div class="alert-box">
@@ -310,39 +320,35 @@
   <div id="swipeIndicator"></div>
 
   <div class="controls" id="controlsBar">
-    <button id="muteBtn" class="ctrl" title="Mute">
-      <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
-    </button>
+    <button id="muteBtn" class="ctrl ok" title="Mute"></button>
+    <button id="camBtn" class="ctrl off" title="Nyalakan Kamera"></button>
     
-    <button id="camBtn" class="ctrl off" title="Nyalakan Kamera">
-      <svg viewBox="0 0 24 24"><path d="M21 6.5l-4 4V7c0-.55-.45-1-1-1H9.82L21 17.18V6.5zM3.27 2L2 3.27 4.73 6H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.21 0 .39-.08.54-.18L19.73 21 21 19.73 3.27 2z"/></svg>
-    </button>
-    
-    <button id="flipBtn" class="ctrl" title="Tukar layar kecil dan layar penuh" aria-label="Tukar posisi layar kecil dan layar penuh">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4.5A1.5 1.5 0 0 1 4.5 3h10A1.5 1.5 0 0 1 16 4.5V6h-2V5H5v10h1v2H4.5A1.5 1.5 0 0 1 3 15.5v-11ZM9 8.5A1.5 1.5 0 0 1 10.5 7h9A1.5 1.5 0 0 1 21 8.5v11a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 9 19.5v-11ZM11 9v10h8V9h-8Z"/></svg>
+    <button id="flipBtn" class="ctrl swap" title="Ganti Kamera Depan/Belakang">
+      <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
     </button>
 
-    <button id="speakerBtn" class="ctrl" title="Speaker">
-      <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-    </button>
-    
-    <button id="endBtn" class="ctrl danger">AKHIRI</button>
+    <button id="speakerBtn" class="ctrl" title="Speaker"></button>
+    <button id="endBtn" class="ctrl end" title="Akhiri"></button>
   </div>
 </div>
 
-<!-- ============ ENDED ============ -->
-<div id="ended" class="screen hidden">
-  <div class="icon">🛡️</div>
-  <h2>Koneksi Terputus</h2>
-  <p>
-    Seluruh data transmisi, kunci enkripsi (Ratchet), dan cache memori telah dihancurkan secara permanen.
-  </p>
-  <button id="backBtn" class="primary">Keluar</button>
+<!-- ============ PURGE (TOTAL ERASURE) ============ -->
+<div id="purge">
+  <canvas id="purgeCanvas"></canvas><div class="vignette"></div>
+  <div class="hexrow" id="hexA" style="margin-top:calc(env(safe-area-inset-top) + 14px)"></div>
+  <div class="hexrow" id="hexB"></div>
+  <div class="panel" id="purgePanel">
+    <div class="ptitle" id="purgeTitle">TOTAL ERASURE PROTOCOL</div>
+    <div class="bar"><i id="purgeBar"></i></div><div class="pct" id="purgePct">0%</div>
+    <div class="log" id="purgeLog"></div>
+    <div class="sec">SHA-512 · AES-256-GCM · ECDH P-256 · SECURITY P2P</div>
+  </div>
+  <div class="hexrow" id="hexC"></div>
+  <div class="hexrow" id="hexD" style="margin-bottom:calc(env(safe-area-inset-bottom) + 14px)"></div>
 </div>
 
 <div id="toast" class="toast"></div>
 
-<!-- Library PeerJS -->
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script>
 (() => {
@@ -356,8 +362,8 @@ const state = {
   localStream: null, remoteStream: null,
   callActive: false, ended: false,
   frameEnc: false, frameEncAgreed: false, frameEncActive: false,
-  remoteCaps: null, facing: "user",
-  retryTimer: null, watermarkTimer: null,
+  remoteCaps: null, facing: "user", flipBusy: false,
+  retryTimer: null,
   fingerprintTimer: null,
   hideControlsTimer: null,
   speakerActive: false,
@@ -378,21 +384,58 @@ const state = {
 
 const $ = (id) => document.getElementById(id);
 const els = {
-  setup: $("setup"), call: $("call"), ended: $("ended"),
+  setup: $("setup"), call: $("call"),
   myId: $("myId"), partnerId: $("partnerId"), passphrase: $("passphrase"),
   extraEnc: $("extraEnc"), startBtn: $("startBtn"),
   remoteVideo: $("remoteVideo"), localVideo: $("localVideo"),
   audioAvatar: $("audioAvatar"), statusBar: $("statusBar"),
-  fpBox: $("fpBox"), fpValue: $("fpValue"), watermark: $("watermark"),
+  fpBox: $("fpBox"), fpValue: $("fpValue"),
   muteBtn: $("muteBtn"), camBtn: $("camBtn"), flipBtn: $("flipBtn"), 
-  speakerBtn: $("speakerBtn"), endBtn: $("endBtn"), backBtn: $("backBtn"), toast: $("toast"),
+  speakerBtn: $("speakerBtn"), endBtn: $("endBtn"), toast: $("toast"),
   controlsBar: $("controlsBar"), swipeIndicator: $("swipeIndicator"), videoWrap: $("videoWrap"),
   cyberAlert: $("cyberAlert"), attackerIp: $("attackerIp"), attackerTool: $("attackerTool"),
-  pipContainer: $("pipContainer"), swapViewBtn: $("swapViewBtn")
+  pipContainer: $("pipContainer")
 };
 
 // ==========================================
-// FITUR TELEGRAM OTOMATIS (AUTO-FILL)
+// IKON KONTROL
+// ==========================================
+// Semua garis miring memakai koordinat yang sama (1,1 -> 23,23), stroke 2, agar presisi & rapi
+const SLASH = `<line x1="1" y1="1" x2="23" y2="23"></line>`;
+const SPK_BODY = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>`;
+const ICON = {
+  micOn:  `<svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>`,
+  micOff: `<svg viewBox="0 0 24 24"><line x1="1" y1="1" x2="23" y2="23"></line><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"></path><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>`,
+  camOn:  `<svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>`,
+  camOff: `<svg viewBox="0 0 24 24"><path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`,
+  // Speaker ON (loudspeaker aktif): hijau, bentuk asli dengan gelombang suara
+  spkOn:  `<svg viewBox="0 0 24 24">${SPK_BODY}</svg>`,
+  // Speaker MUTE: bentuk yang sama persis + garis miring, seluruhnya merah
+  spkOff: `<svg viewBox="0 0 24 24">${SPK_BODY}${SLASH}</svg>`,
+  phoneOn:  `<svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`,
+  phoneOff: `<svg viewBox="0 0 24 24"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"></path><line x1="23" y1="1" x2="1" y2="23"></line></svg>`
+};
+
+function setBtn(btn, cls, icon) {
+  btn.classList.remove("ok", "off", "active");
+  if (cls) btn.classList.add(cls);
+  btn.innerHTML = icon;
+}
+const setMicUI = (on) => setBtn(els.muteBtn, on ? "ok" : "off", on ? ICON.micOn : ICON.micOff);
+const setCamUI = (on) => setBtn(els.camBtn, on ? "ok" : "off", on ? ICON.camOn : ICON.camOff);
+const setSpeakerUI = (on) => setBtn(els.speakerBtn, on ? "ok" : "off", on ? ICON.spkOn : ICON.spkOff);
+function initControlIcons() {
+  setMicUI(true);
+  setCamUI(false);
+  setSpeakerUI(false);
+  els.endBtn.classList.remove("pressed");
+  els.endBtn.innerHTML = ICON.phoneOn;
+  els.flipBtn.classList.remove("rear");
+}
+initControlIcons();
+
+// ==========================================
+// TELEGRAM AUTO-FILL
 // ==========================================
 window.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -419,7 +462,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================
-// UTILITIES & HELPERS
+// UTILITIES
 // ==========================================
 function toast(msg, ms = 3200) {
   els.toast.textContent = msg;
@@ -430,7 +473,6 @@ function toast(msg, ms = 3200) {
 function showScreen(name) {
   els.setup.classList.toggle("hidden", name !== "setup");
   els.call.classList.toggle("hidden", name !== "call");
-  els.ended.classList.toggle("hidden", name !== "ended");
 }
 function setStatus(text, ok = false, alert = false) {
   els.statusBar.textContent = text;
@@ -456,97 +498,83 @@ function hexToBuf(hex) {
 }
 
 // ==========================================
-// 🆕 SWAP VIEW & DRAG & DROP LOGIC
+// SWAP LAYAR (TAP PIP)
 // ==========================================
-
-// Logika Tukar Layar (Swap Source Video)
 function performSwap() {
+    if (!state.localStream) return;
     state.isSwapped = !state.isSwapped;
-    
-    // Tukar sumber video (srcObject)
+
     if (state.isSwapped) {
-        // Layar besar (remoteVideo) menampilkan video kita (localStream)
-        // Layar kecil (localVideo) menampilkan video pasangan (remoteStream)
         els.remoteVideo.srcObject = state.localStream;
-        els.remoteVideo.muted = true; // Mute diri sendiri di layar besar
-        
-        els.localVideo.srcObject = state.remoteStream;
-        els.localVideo.muted = false; // Suara pasangan keluar dari layar kecil (tapi audionya tetap dari remoteVideo secara default WebRTC, jadi ini aman)
+        els.remoteVideo.muted = true;
+        if (state.remoteStream) {
+            els.localVideo.srcObject = state.remoteStream;
+            els.localVideo.muted = false;
+        } else {
+            els.localVideo.srcObject = null;
+        }
     } else {
-        // Kembalikan ke normal
-        els.remoteVideo.srcObject = state.remoteStream;
-        els.remoteVideo.muted = false;
-        
+        if (state.remoteStream) {
+            els.remoteVideo.srcObject = state.remoteStream;
+            els.remoteVideo.muted = false;
+        } else {
+            els.remoteVideo.srcObject = null;
+        }
         els.localVideo.srcObject = state.localStream;
         els.localVideo.muted = true;
     }
+    els.remoteVideo.play().catch(() => {});
+    els.localVideo.play().catch(() => {});
 }
 
-els.swapViewBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // Mencegah drag saat klik tombol
-    flipCamera();
-});
-
-// Logika Drag & Drop (1:1 Presisi)
+// ==========================================
+// DRAG PIP
+// ==========================================
 let dragStartX = 0, dragStartY = 0;
-let pipStartLeft = 0, pipStartTop = 0;
+let tapStartTime = 0;
+let initialPointerX = 0;
+let initialPointerY = 0;
 
 els.pipContainer.addEventListener('pointerdown', (e) => {
-  // Abaikan jika yang diklik adalah tombol swap
-  if (e.target.closest('#swapViewBtn')) return;
-  
   state.isDragging = true;
-  
-  // Dapatkan posisi awal kotak PIP
+  tapStartTime = Date.now();
+  initialPointerX = e.clientX;
+  initialPointerY = e.clientY;
   const rect = els.pipContainer.getBoundingClientRect();
-  
-  // Kalkulasi offset antara klik user dengan pojok kiri atas kotak
   dragStartX = e.clientX - rect.left;
   dragStartY = e.clientY - rect.top;
-  
-  pipStartLeft = rect.left;
-  pipStartTop = rect.top;
-  
   els.pipContainer.setPointerCapture(e.pointerId);
-  els.localVideo.style.cursor = 'grabbing';
 });
 
 els.pipContainer.addEventListener('pointermove', (e) => {
   if (!state.isDragging) return;
   e.preventDefault();
-  
-  // Hitung posisi baru berdasarkan pergerakan pointer
   let newLeft = e.clientX - dragStartX;
   let newTop = e.clientY - dragStartY;
-
-  // Batasi agar tidak keluar layar (dengan margin 10px)
   const maxX = window.innerWidth - els.pipContainer.offsetWidth - 10;
   const maxY = window.innerHeight - els.pipContainer.offsetHeight - 10;
-  
   newLeft = Math.max(10, Math.min(newLeft, maxX));
-  newTop = Math.max(60, Math.min(newTop, maxY)); // Top minimal 60 agar tidak menutupi statusbar
-
-  // Terapkan posisi
+  newTop = Math.max(60, Math.min(newTop, maxY)); 
   els.pipContainer.style.left = newLeft + 'px';
   els.pipContainer.style.top = newTop + 'px';
-  els.pipContainer.style.right = 'auto'; // Matikan right agar kalkulasi left bekerja
+  els.pipContainer.style.right = 'auto'; 
 });
 
 els.pipContainer.addEventListener('pointerup', (e) => {
   state.isDragging = false;
-  els.pipContainer.releasePointerCapture(e.pointerId);
-  els.localVideo.style.cursor = 'grab';
+  try { els.pipContainer.releasePointerCapture(e.pointerId); } catch(_) {}
+  const timeDiff = Date.now() - tapStartTime;
+  const dist = Math.hypot(e.clientX - initialPointerX, e.clientY - initialPointerY);
+  if (timeDiff < 300 && dist < 10) performSwap();
 });
 
-
 // ==========================================
-// AUTO-HIDE CONTROLS LOGIC (8 DETIK)
+// AUTO-HIDE CONTROLS (8 DETIK)
 // ==========================================
 function resetControlsTimer() {
   if (!state.callActive) return;
   els.controlsBar.classList.remove("hide");
   els.swipeIndicator.classList.remove("visible");
-  
   clearTimeout(state.hideControlsTimer);
   state.hideControlsTimer = setTimeout(() => {
     if (state.callActive) {
@@ -555,27 +583,18 @@ function resetControlsTimer() {
     }
   }, 8000);
 }
-
-function showControlsManually() {
-  resetControlsTimer();
-}
+function showControlsManually() { resetControlsTimer(); }
 
 document.addEventListener("touchstart", resetControlsTimer, {passive: true});
 document.addEventListener("mousemove", resetControlsTimer, {passive: true});
 document.addEventListener("click", resetControlsTimer);
 
 let touchStartY = 0;
-els.videoWrap.addEventListener("touchstart", (e) => {
-  touchStartY = e.touches[0].clientY;
-}, {passive: true});
-
+els.videoWrap.addEventListener("touchstart", (e) => { touchStartY = e.touches[0].clientY; }, {passive: true});
 els.videoWrap.addEventListener("touchend", (e) => {
   const touchEndY = e.changedTouches[0].clientY;
-  if (touchStartY - touchEndY > 50 && touchStartY > window.innerHeight * 0.6) {
-    showControlsManually();
-  }
+  if (touchStartY - touchEndY > 50 && touchStartY > window.innerHeight * 0.6) showControlsManually();
 }, {passive: true});
-
 els.swipeIndicator.addEventListener("click", showControlsManually);
 
 // ==========================================
@@ -640,7 +659,7 @@ async function makeRatchetChain(baseBytes, direction) {
 }
 
 async function finalizeEncryptionKeys(pbkdf2SecretBytes) {
-  const combinedMaterial = concatBytes(pbkdf2SecretBytes, new Uint8Array(state.ecdhSharedSecret));
+  const combinedMaterial = concatBytes(new Uint8Array(pbkdf2SecretBytes), new Uint8Array(state.ecdhSharedSecret));
   const enc = new TextEncoder();
   const masterKey = await crypto.subtle.importKey("raw", combinedMaterial, "HKDF", false, ["deriveBits"]);
   const mediaBits = await crypto.subtle.deriveBits(
@@ -660,7 +679,7 @@ async function finalizeEncryptionKeys(pbkdf2SecretBytes) {
 }
 
 // ==========================================
-// 🚨 INTRUSION DETECTION & SELF-DESTRUCT SYSTEM
+// 🚨 INTRUSION DETECTION
 // ==========================================
 function triggerIntrusionProtocol() {
   if (state.intrusionDetected) return;
@@ -806,7 +825,7 @@ function updateEncryptionBadge() {
 }
 
 // ==========================================
-// ANTI-CAPTURE & WATERMARK HUD
+// ANTI-CAPTURE
 // ==========================================
 function disableCaptureAPIs() {
   if (state.captureAPIsDisabled) return;
@@ -834,10 +853,9 @@ function installAntiCapture() {
   document.addEventListener("keydown", (e) => {
     if (e.key === "PrintScreen" || e.code === "PrintScreen") {
       e.preventDefault(); try { navigator.clipboard.writeText(""); } catch (_) {}
-      toast("Screenshot diblokir oleh protokol keamanan.");
     }
     if ((e.ctrlKey || e.metaKey) && e.shiftKey && ["s", "p", "3", "4", "5"].includes(e.key.toLowerCase())) {
-      e.preventDefault(); toast("Pintasan dibatasi.");
+      e.preventDefault();
     }
   });
   document.addEventListener("visibilitychange", () => {
@@ -848,33 +866,14 @@ function installAntiCapture() {
   window.addEventListener("focus", () => { els.call.classList.remove("blurred"); });
 }
 
-function startWatermark() {
-  const render = () => {
-    if (!state.callActive) return;
-    const now = new Date().toISOString().replace("T", " ").slice(0, 19);
-    const info = `${state.myId} ↔ ${state.partnerId} | ${now} | Kresna AI - by. Dragon Fly`;
-    let html = "";
-    for(let i=0; i<15; i++){ html += `<span class="wm-text">${info}</span>`; }
-    els.watermark.innerHTML = html;
-  };
-  render();
-  clearInterval(state.watermarkTimer);
-  state.watermarkTimer = setInterval(render, 1000);
-}
-function stopWatermark() {
-  clearInterval(state.watermarkTimer);
-  state.watermarkTimer = null;
-  els.watermark.innerHTML = "";
-}
-
 // ==========================================
-// 🆕 DYNAMIC FINGERPRINT LOGIC
+// DYNAMIC FINGERPRINT
 // ==========================================
 function startFingerprintTimer() {
+  els.fpValue.textContent = state.fingerprint || "—";
   clearInterval(state.fingerprintTimer);
   state.fingerprintTimer = setInterval(() => {
     if (!state.callActive) return;
-    
     const chars = "0123456789ABCDEF";
     let newFp = "";
     for(let i=0; i<4; i++) {
@@ -886,7 +885,7 @@ function startFingerprintTimer() {
 }
 
 // ==========================================
-// MEDIA & CALL LOGIC
+// MEDIA & CALL
 // ==========================================
 async function getLocalMedia(video) {
   const constraints = {
@@ -912,6 +911,9 @@ async function startCallSetup() {
   state.isHost = myId.localeCompare(partnerId, undefined, { numeric: true }) < 0;
   state.intrusionDetected = false;
   state.isSwapped = false;
+  state.facing = "user";
+  state.speakerActive = false;
+  initControlIcons();
 
   els.startBtn.disabled = true;
   els.startBtn.textContent = "Menghubungkan...";
@@ -932,7 +934,6 @@ async function startCallSetup() {
 
   showScreen("call");
   
-  // Pasang stream lokal ke PIP
   els.localVideo.srcObject = state.localStream;
   els.localVideo.muted = true;
   
@@ -940,17 +941,11 @@ async function startCallSetup() {
   els.pipContainer.classList.toggle("hidden", !hasVideo);
   els.audioAvatar.classList.toggle("hidden", hasVideo);
   
-  // Reset Posisi PIP ke default (kanan atas)
   els.pipContainer.style.left = 'auto';
   els.pipContainer.style.right = '16px';
   els.pipContainer.style.top = '70px';
 
-  els.camBtn.classList.toggle("off", !hasVideo);
-  els.camBtn.innerHTML = hasVideo
-    ? `<svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>`
-    : `<svg viewBox="0 0 24 24"><path d="M21 6.5l-4 4V7c0-.55-.45-1-1-1H9.82L21 17.18V6.5zM3.27 2L2 3.27 4.73 6H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.21 0 .39-.08.54-.18L19.73 21 21 19.73 3.27 2z"/></svg>`;
-  
-  els.muteBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>`;
+  setCamUI(hasVideo);
 
   try { els.localVideo.disablePictureInPicture = true; } catch(_){}
   try { els.remoteVideo.disablePictureInPicture = true; } catch(_){}
@@ -961,7 +956,6 @@ async function startCallSetup() {
 
   state.callActive = true;
   disableCaptureAPIs();
-  startWatermark();
   startFingerprintTimer();
   resetControlsTimer();
   
@@ -1065,9 +1059,16 @@ function handleCall(call) {
   call.on("stream", (remoteStream) => {
     state.remoteStream = remoteStream;
     
-    // Pasang stream remote ke layar besar
-    els.remoteVideo.srcObject = remoteStream;
+    if (state.isSwapped) {
+        els.localVideo.srcObject = remoteStream;
+        els.localVideo.muted = false;
+    } else {
+        els.remoteVideo.srcObject = remoteStream;
+        els.remoteVideo.muted = false;
+    }
+    
     els.remoteVideo.play().catch(()=>{});
+    els.localVideo.play().catch(()=>{});
     
     updateEncryptionBadge();
     
@@ -1102,17 +1103,14 @@ function handleCall(call) {
 }
 
 // ==========================================
-// CONTROL LOGIC
+// CONTROLS
 // ==========================================
 function toggleMute() {
   if (!state.localStream) return;
   const audio = state.localStream.getAudioTracks()[0];
   if (!audio) return;
   audio.enabled = !audio.enabled;
-  els.muteBtn.classList.toggle("off", !audio.enabled);
-  els.muteBtn.innerHTML = audio.enabled 
-    ? `<svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>`
-    : `<svg viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>`;
+  setMicUI(audio.enabled);
 }
 
 async function toggleCam() {
@@ -1122,7 +1120,6 @@ async function toggleCam() {
 
   if (!video) {
     try {
-      toast("Menyalakan kamera...", 2000);
       const vidStream = await navigator.mediaDevices.getUserMedia({ 
           video: { facingMode: state.facing, width: { ideal: 1280 }, height: { ideal: 720 } } 
       });
@@ -1139,7 +1136,6 @@ async function toggleCam() {
         }
       }
 
-      // Jika sedang swap, jangan timpa remoteVideo, pasang ke localVideo
       if (state.isSwapped) {
           els.remoteVideo.srcObject = state.localStream; 
       } else {
@@ -1154,8 +1150,7 @@ async function toggleCam() {
       els.pipContainer.style.top = '70px';
 
       state.mode = "video";
-      els.camBtn.classList.remove("off");
-      els.camBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>`;
+      setCamUI(true);
 
     } catch (e) {
       toast("Gagal menyalakan kamera: " + e.message, 4000);
@@ -1163,54 +1158,191 @@ async function toggleCam() {
     }
   } else {
     video.enabled = !video.enabled;
-    els.camBtn.classList.toggle("off", !video.enabled);
-    els.camBtn.innerHTML = video.enabled
-      ? `<svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>`
-      : `<svg viewBox="0 0 24 24"><path d="M21 6.5l-4 4V7c0-.55-.45-1-1-1H9.82L21 17.18V6.5zM3.27 2L2 3.27 4.73 6H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.21 0 .39-.08.54-.18L19.73 21 21 19.73 3.27 2z"/></svg>`;
+    setCamUI(video.enabled);
   }
 }
 
+// FLIP KAMERA: depan <-> belakang, ikon merah saat kamera belakang aktif
 async function flipCamera() {
-  if (!state.localStream) return;
-  state.facing = state.facing === "user" ? "environment" : "user";
+  if (state.flipBusy) return;
+  const old = state.localStream && state.localStream.getVideoTracks()[0];
+  if (!old) { toast("Nyalakan kamera dulu.", 2000); return; }
+  state.flipBusy = true;
+
+  const next = state.facing === "user" ? "environment" : "user";
+
+  const open = async (facing, exact) => {
+    const st = await navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: {
+        width: { ideal: 1280 }, height: { ideal: 720 },
+        facingMode: exact ? { exact: facing } : { ideal: facing }
+      }
+    });
+    return st.getVideoTracks()[0];
+  };
+
+  const attach = async (nt, wasEnabled) => {
+    nt.enabled = wasEnabled;
+    state.localStream.getVideoTracks().forEach(t => state.localStream.removeTrack(t));
+    state.localStream.addTrack(nt);
+
+    const pc = state.call && state.call.peerConnection;
+    if (pc) {
+      const tr = pc.getTransceivers().find(t => t.receiver && t.receiver.track && t.receiver.track.kind === "video");
+      if (tr && tr.sender) await tr.sender.replaceTrack(nt);
+      else pc.addTrack(nt, state.localStream);
+    }
+
+    const target = state.isSwapped ? els.remoteVideo : els.localVideo;
+    target.srcObject = null;
+    target.srcObject = state.localStream;
+    target.muted = true;
+    target.play().catch(() => {});
+  };
+
+  const wasEnabled = old.enabled;
   try {
-    const oldTrack = state.localStream.getVideoTracks()[0];
-    if (oldTrack) { oldTrack.stop(); state.localStream.removeTrack(oldTrack); }
-    await new Promise(r => setTimeout(r, 250));
-    const newStream = await navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode: state.facing, width: { ideal: 1280 }, height: { ideal: 720 } } });
-    const newTrack = newStream.getVideoTracks()[0];
-    if (state.call && state.call.peerConnection) {
-      const sender = state.call.peerConnection.getSenders().find(s => s.track && s.track.kind === "video");
-      if (sender) await sender.replaceTrack(newTrack);
-    }
-    state.localStream.addTrack(newTrack);
-    
-    if (state.isSwapped) {
-        els.remoteVideo.srcObject = state.localStream;
-    } else {
-        els.localVideo.srcObject = state.localStream;
-    }
-    
-    toast("Kamera berhasil diganti", 2000);
+    // Kamera lama harus dilepas dulu, banyak HP tidak bisa membuka dua kamera sekaligus
+    old.stop();
+    let nt;
+    try { nt = await open(next, true); }
+    catch (e1) { nt = await open(next, false); }
+    if (!nt) throw new Error("Kamera tidak ditemukan");
+    await attach(nt, wasEnabled);
+    state.facing = next;
+    els.flipBtn.classList.toggle("rear", next === "environment");
   } catch (e) {
-    toast("Gagal ganti kamera: " + e.message, 4000);
+    console.error("[KRESNA FLIP]", e);
+    try { const back = await open(state.facing, false); await attach(back, wasEnabled); } catch (e2) {}
+    toast("Gagal ganti kamera: " + (e && e.message ? e.message : e), 3000);
+  } finally {
+    state.flipBusy = false;
   }
 }
 
+// SPEAKER: hijau saat loudspeaker ON, merah + garis miring saat MUTE
 async function toggleSpeaker() {
   if (!els.remoteVideo) return;
   state.speakerActive = !state.speakerActive;
-  els.speakerBtn.classList.toggle("active", state.speakerActive);
+  setSpeakerUI(state.speakerActive);
+
   if (typeof els.remoteVideo.setSinkId === "function") {
-    try {
-      await els.remoteVideo.setSinkId('default');
-      toast(state.speakerActive ? "Audio dialihkan ke Speaker" : "Audio dialihkan ke Earpiece", 2000);
-    } catch (e) {
-      toast(state.speakerActive ? "Speaker Mode: ON" : "Speaker Mode: OFF", 2000);
-    }
-  } else {
-    toast(state.speakerActive ? "Speaker Mode: ON" : "Speaker Mode: OFF", 2000);
+    try { await els.remoteVideo.setSinkId('default'); } catch (e) {}
   }
+}
+
+// ==========================================
+// 🧨 TOTAL ERASURE (PURGE) + AUTO EXIT
+// ==========================================
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+const hx = (n) => Array.from({length:n}, () => Math.floor(Math.random()*256).toString(16).padStart(2,"0")).join(" ");
+
+async function wipeAll() {
+  try { localStorage.clear(); sessionStorage.clear(); } catch(e){}
+  try { if (window.caches) { const ks = await caches.keys(); await Promise.all(ks.map(k => caches.delete(k))); } } catch(e){}
+  try { if (window.indexedDB && indexedDB.databases) { const dbs = await indexedDB.databases(); dbs.forEach(d => d.name && indexedDB.deleteDatabase(d.name)); } } catch(e){}
+  try { document.cookie.split(";").forEach(c => { const n = c.split("=")[0].trim(); if (n) document.cookie = n + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/"; }); } catch(e){}
+  try { if (navigator.serviceWorker) { const rs = await navigator.serviceWorker.getRegistrations(); rs.forEach(r => r.unregister()); } } catch(e){}
+  try { performance.clearResourceTimings(); } catch(e){}
+  try { els.fpValue.textContent = "—"; } catch(e){}
+}
+
+function exitApp() {
+  try { if (window.Telegram && window.Telegram.WebApp) window.Telegram.WebApp.close(); } catch(e){}
+  try { window.close(); } catch(e){}
+  // Fallback jika browser menolak menutup jendela
+  setTimeout(() => {
+    const P = $("purge");
+    P.innerHTML = '<div style="margin:auto;text-align:center;color:#00f0ff;letter-spacing:3px;font-size:13px;text-shadow:0 0 14px #00f0ff;padding:24px">🛡️ SESI DIHANCURKAN<br><span style="color:#6a8a9a;font-size:11px;letter-spacing:1px">Zero-Trace selesai. Aman untuk ditutup.</span></div>';
+  }, 700);
+}
+
+function runPurge() {
+  const P = $("purge"), log = $("purgeLog"), bar = $("purgeBar"), pct = $("purgePct"),
+        title = $("purgeTitle"), canvas = $("purgeCanvas");
+  showScreen("none");
+  els.cyberAlert.classList.add("hidden");
+  P.classList.remove("exit"); P.classList.add("on");
+  log.innerHTML = ""; bar.style.width = "0"; pct.textContent = "0%";
+  title.classList.remove("done"); title.textContent = "TOTAL ERASURE PROTOCOL";
+
+  // Matrix horizontal (bergerak kiri ke kanan)
+  const ctx = canvas.getContext("2d");
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.width = Math.floor(innerWidth * dpr), H = canvas.height = Math.floor(innerHeight * dpr);
+  const fs = 14 * dpr, rows = Math.ceil(H / fs);
+  const xs = Array.from({length: rows}, () => Math.random() * W);
+  const spd = Array.from({length: rows}, () => (0.8 + Math.random() * 2.6) * dpr);
+  const glyphs = "01アイウエオカキクケコサシスセソ<>/{}$#@ABCDEF";
+  let run = true;
+  const draw = () => {
+    if (!run) return;
+    ctx.fillStyle = "rgba(0,0,0,.13)"; ctx.fillRect(0, 0, W, H);
+    ctx.font = fs + "px monospace";
+    for (let r = 0; r < rows; r++) {
+      xs[r] += spd[r];
+      if (xs[r] > W) { xs[r] = -Math.random() * W * 0.3; spd[r] = (0.8 + Math.random() * 2.6) * dpr; }
+      ctx.fillStyle = Math.random() < 0.06 ? "#ff2a55" : (Math.random() < 0.15 ? "#ffffff" : "#00f0ff");
+      ctx.fillText(glyphs[Math.floor(Math.random() * glyphs.length)], xs[r], r * fs + fs);
+    }
+    requestAnimationFrame(draw);
+  };
+  draw();
+
+  // Baris hex/ciphertext bergerak horizontal
+  const tags = ["[MSG]", "[VIDEO]", "[THUMB]", "[IP]", "[DNS]", "[ICE]", "[KEY]", "[CACHE]"];
+  const rowIds = ["hexA", "hexB", "hexC", "hexD"];
+  const fillRows = () => rowIds.forEach((id, i) => {
+    const el = $(id);
+    if (!el) return;
+    if (!el.firstChild) el.appendChild(document.createElement("span"));
+    const sp = el.firstChild;
+    sp.style.animationDuration = (7 + i * 2.5) + "s";
+    sp.style.animationDirection = i % 2 ? "reverse" : "normal";
+    sp.textContent = tags.slice().sort(() => Math.random() - 0.5).slice(0, 4).join(" ▓▒░ ") + " ▸ " + hx(70);
+  });
+  fillRows();
+  const hexTimer = setInterval(fillRows, 1200);
+
+  const algos = ["AES-256-GCM", "SHA-512", "HKDF", "ECDH-P256"];
+  const steps = [
+    ["Memutus tunnel P2P & menutup RTCPeerConnection", 700, null],
+    ["Overwrite kunci ratchet AES-256 / SHA-512 dengan byte acak", 900, null],
+    ["Membersihkan cache memori & Cache Storage", 1000, wipeAll],
+    ["Peleburan trafik IP · ICE candidate & rute dilebur", 1100, null],
+    ["Menghapus riwayat percakapan & buffer video", 900, null],
+    ["Menghapus thumbnail, frame cache & snapshot", 900, null],
+    ["Menghapus IP trace, address & domain sesi", 1000, wipeAll],
+    ["Verifikasi 3-pass overwrite · zero-trace", 800, null]
+  ];
+
+  (async () => {
+    for (let i = 0; i < steps.length; i++) {
+      const [label, ms, fn] = steps[i];
+      const line = document.createElement("div"); line.textContent = "▸ " + label + " …"; log.appendChild(line);
+      const code = document.createElement("div"); code.style.color = "rgba(0,240,255,.55)";
+      code.textContent = "   0x" + hx(6).replace(/ /g, "") + " ⇒ 0x000000000000 · " + algos[i % 4];
+      log.appendChild(code);
+      while (log.children.length > 14) log.removeChild(log.firstChild);
+      const from = i / steps.length * 100, to = (i + 1) / steps.length * 100, t0 = performance.now();
+      const tick = setInterval(() => {
+        const k = Math.min(1, (performance.now() - t0) / ms), v = from + (to - from) * k;
+        bar.style.width = v + "%"; pct.textContent = Math.floor(v) + "%";
+      }, 50);
+      try { if (fn) await fn(); } catch(e){}
+      await sleep(ms);
+      clearInterval(tick);
+      line.textContent = "✔ " + label; line.className = "ok";
+    }
+    bar.style.width = "100%"; pct.textContent = "100%";
+    title.textContent = "✔ SEMUA DATA TERHAPUS PERMANEN"; title.classList.add("done");
+    await sleep(1000);
+    P.classList.add("exit");
+    await sleep(1100);
+    run = false; clearInterval(hexTimer);
+    exitApp();
+  })();
 }
 
 // ==========================================
@@ -1234,6 +1366,7 @@ function endCall() {
   if (state.dataConn) { try { state.dataConn.close(); } catch(e){} state.dataConn = null; }
   if (state.peer) { try { state.peer.destroy(); } catch(e){} state.peer = null; }
 
+  try { if (state.mediaKeyBytes) state.mediaKeyBytes.fill(0); } catch(e){}
   state.mediaKeyBytes = null; state.outRatchet = null; state.inRatchet = null;
   state.pbkdf2Secret = null; state.ecdhSharedSecret = null; state.ecdhKeyPair = null;
   state.ecdhPublicKeyHex = ""; state.ecdhPartnerReady = false;
@@ -1251,24 +1384,12 @@ function endCall() {
   }
 
   restoreCaptureAPIs();
-  stopWatermark();
   els.call.classList.remove("blurred");
   els.cyberAlert.classList.add("hidden");
-
-  els.muteBtn.classList.remove("off");
-  els.camBtn.classList.add("off");
-  els.speakerBtn.classList.remove("active");
-  
-  els.controlsBar.classList.remove("hide");
-  els.swipeIndicator.classList.remove("visible");
-  
   els.fpBox.style.display = "none";
-  els.startBtn.disabled = false;
-  els.startBtn.textContent = "Mulai";
-  setStatus("Menghubungkan...");
 
-  showScreen("ended");
-  toast("Data enkripsi & cache memori telah dihancurkan.", 4000);
+  // Langsung ke layar penghapusan total lalu keluar otomatis
+  runPurge();
 }
 
 // ==========================================
@@ -1283,29 +1404,26 @@ document.querySelectorAll(".mode").forEach(btn => {
 
 els.startBtn.addEventListener("click", startCallSetup);
 els.muteBtn.addEventListener("click", toggleMute);
-els.camBtn.addEventListener("click", toggleCam);
-els.flipBtn.addEventListener("click", performSwap);
 els.speakerBtn.addEventListener("click", toggleSpeaker);
-els.endBtn.addEventListener("click", endCall);
+els.camBtn.addEventListener("click", toggleCam);
+els.flipBtn.addEventListener("click", (e) => { e.preventDefault(); flipCamera(); });
 
-els.backBtn.addEventListener("click", () => {
-  state.ended = false;
-  state.callActive = false;
-  if(!window.Telegram?.WebApp?.initDataUnsafe?.user) els.myId.value = "";
-  els.partnerId.value = "";
-  els.passphrase.value = "";
-  showScreen("setup");
+// Tutup telepon: hijau tanpa garis -> merah + garis miring saat diklik -> proses penghapusan
+els.endBtn.addEventListener("click", () => {
+  if (state.ended || els.endBtn.classList.contains("pressed")) return;
+  els.endBtn.classList.add("pressed");
+  els.endBtn.innerHTML = ICON.phoneOff;
+  setTimeout(endCall, 450);
 });
 
 installAntiCapture();
 window.addEventListener("beforeunload", () => {
   if (state.localStream) state.localStream.getTracks().forEach(t => t.stop());
   if (state.peer) { try { state.peer.destroy(); } catch(e){} }
-  stopWatermark(); restoreCaptureAPIs();
+  restoreCaptureAPIs();
 });
 window.addEventListener("pagehide", () => {
   if (state.localStream) state.localStream.getTracks().forEach(t => t.stop());
-  stopWatermark();
 });
 [els.myId, els.partnerId].forEach(el => {
   el.addEventListener("keydown", e => { if (e.key === "Enter") startCallSetup(); });
