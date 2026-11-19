@@ -4,211 +4,155 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
 <meta name="referrer" content="no-referrer" />
-<meta http-equiv="Cache-Control" content="no-store" />
-<title>KRESNA AI - ANTI SADAP — Quantum Encrypted Comm</title>
+<title>KRESNA AI - ANTI SADAP</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
   :root{
-    --bg: #03050a; 
-    --panel: rgba(15, 22, 35, 0.65); 
-    --border: rgba(0, 240, 255, 0.2);
-    --text: #e0f7fa; 
-    --muted: #6a8a9a; 
-    --neon: #00f0ff; 
-    --neon-dim: rgba(0, 240, 255, 0.15);
-    --danger: #ff2a55; 
-    --danger-dim: rgba(255, 42, 85, 0.2);
-    --warning: #ffcc00;
-    --green: #00ff88;
+    --bg:#03050a;--panel:rgba(15,22,35,0.65);--border:rgba(0,240,255,0.2);
+    --text:#e0f7fa;--muted:#6a8a9a;--neon:#00f0ff;--neon-dim:rgba(0,240,255,0.15);
+    --danger:#ff2a55;--danger-dim:rgba(255,42,85,0.2);--warning:#ffcc00;--green:#00ff88;
   }
-  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent; user-select: none;}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;}
   html,body{margin:0;height:100%;background:var(--bg);color:var(--text);
-    font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-    overscroll-behavior:none; background-image: 
-      radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.05) 0%, transparent 50%),
-      linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-    background-size: 100% 100%, 30px 30px, 30px 30px;}
+    font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,sans-serif;
+    overscroll-behavior:none;background-image:
+      radial-gradient(circle at 50% 0%,rgba(0,240,255,0.05) 0%,transparent 50%),
+      linear-gradient(rgba(0,240,255,0.03) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(0,240,255,0.03) 1px,transparent 1px);
+    background-size:100% 100%,30px 30px,30px 30px;transition:background-image .6s;}
   body{display:flex;flex-direction:column;min-height:100dvh}
   .screen{flex:1;display:flex;flex-direction:column}
   .hidden{display:none!important}
 
-  /* ---------- SETUP SCREEN ---------- */
   #setup{align-items:center;justify-content:center;padding:20px}
   .card{width:100%;max-width:420px;background:var(--panel);border:1px solid var(--border);
-    border-radius:20px;padding:30px 24px;box-shadow: 0 0 30px rgba(0,240,255,0.1), inset 0 0 20px rgba(0,240,255,0.05);
-    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); position: relative; overflow: hidden;}
-  .card::before {content:''; position:absolute; top:0; left:0; width:100%; height:2px; background: linear-gradient(90deg, transparent, var(--neon), transparent);}
+    border-radius:20px;padding:30px 24px;box-shadow:0 0 30px var(--neon-dim),inset 0 0 20px var(--neon-dim);
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);position:relative;overflow:hidden;}
+  .card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--neon),transparent);}
   .logo{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-  .logo .dot{width:12px;height:12px;border-radius:50%;background:var(--neon);
-    box-shadow:0 0 15px var(--neon); animation: pulseGlow 2s infinite;}
-  @keyframes pulseGlow { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.6; transform:scale(1.2);} }
-  h1{font-size:22px;margin:0;letter-spacing:2px; font-weight:800; text-transform: uppercase;
-     background: -webkit-linear-gradient(0deg, #fff, var(--neon)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-  .sub{margin:4px 0 24px;color:var(--muted);font-size:12px; letter-spacing: 0.5px;}
-  
-  label{display:block;font-size:11px;color:var(--neon);margin:16px 0 8px;
-    text-transform:uppercase;letter-spacing:1.5px; font-weight:600;}
-  input[type=text],input[type=password]{
-    width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(0,240,255,0.2);
-    background:rgba(0,0,0,0.4);color:#fff;font-size:15px;outline:none;
-    transition:all .2s; font-family: monospace;}
-  input:focus{border-color:var(--neon); box-shadow: 0 0 15px var(--neon-dim);}
-  
+  .logo .dot{width:12px;height:12px;border-radius:50%;background:var(--neon);box-shadow:0 0 15px var(--neon);animation:pulseGlow 2s infinite;}
+  @keyframes pulseGlow{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.6;transform:scale(1.2);}}
+  h1{font-size:22px;margin:0;letter-spacing:2px;font-weight:800;text-transform:uppercase;
+     background:linear-gradient(0deg,#fff,var(--neon));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .sub{margin:4px 0 24px;color:var(--muted);font-size:12px;letter-spacing:.5px;}
+  label{display:block;font-size:11px;color:var(--neon);margin:16px 0 8px;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;}
+  input[type=text],input[type=password]{width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(0,240,255,0.2);
+    background:rgba(0,0,0,0.4);color:#fff;font-size:15px;outline:none;transition:all .2s;font-family:monospace;}
+  input:focus{border-color:var(--neon);box-shadow:0 0 15px var(--neon-dim);}
   .modes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
-  .mode{padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);
-    background:rgba(0,0,0,0.3);color:var(--muted);font-size:13px;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;gap:8px;transition:.3s; font-weight: 600;}
-  .mode.active{border-color:var(--neon); background:var(--neon-dim); color:var(--neon); box-shadow: 0 0 15px var(--neon-dim);}
-  
+  .mode{padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);background:rgba(0,0,0,0.3);
+    color:var(--muted);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:.3s;font-weight:600;}
+  .mode.active{border-color:var(--neon);background:var(--neon-dim);color:var(--neon);box-shadow:0 0 15px var(--neon-dim);}
   details{margin-top:20px;border-top:1px dashed rgba(255,255,255,0.1);padding-top:16px}
-  summary{cursor:pointer;font-size:12px;color:var(--muted); outline: none;}
-  .check{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text);
-    margin-top:14px;text-transform:none;letter-spacing:0}
+  summary{cursor:pointer;font-size:12px;color:var(--muted);outline:none;}
+  .check{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text);margin-top:14px;text-transform:none;letter-spacing:0}
   .check input{width:16px;height:16px;accent-color:var(--neon)}
-  
-  button.primary{width:100%;margin-top:26px;padding:16px;border-radius:12px;border:0;
-    background:var(--neon); color:#000; font-weight:800; font-size:15px; cursor:pointer;
-    transition:all .2s; text-transform:uppercase; letter-spacing: 1px;
-    box-shadow: 0 0 20px var(--neon-dim);}
-  button.primary:active{transform:scale(.97); box-shadow: 0 0 30px var(--neon);}
-  button.primary:disabled{opacity:.5;cursor:not-allowed; box-shadow: none;}
-  
-  .foot{margin-top:20px;font-size:10px;color:var(--muted);text-align:center;line-height:1.6; opacity: 0.7;}
+  button.primary{width:100%;margin-top:26px;padding:16px;border-radius:12px;border:0;background:var(--neon);color:#000;
+    font-weight:800;font-size:15px;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:1px;box-shadow:0 0 20px var(--neon-dim);}
+  button.primary:active{transform:scale(.97);box-shadow:0 0 30px var(--neon);}
+  button.primary:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;}
+  .foot{margin-top:20px;font-size:10px;color:var(--muted);text-align:center;line-height:1.6;opacity:.7;}
 
-  /* ---------- CALL SCREEN (FUTURISTIC HUD) ---------- */
-  #call{position:relative;background:#000; overflow: hidden;}
-  
-  .top-hud{position:absolute; top:0; left:0; right:0; padding:16px; z-index:10; display:flex; justify-content:center; pointer-events:none;}
-  .statusbar{background:rgba(0,0,0,0.7); backdrop-filter:blur(10px); color:#fff;
-    padding:8px 20px; border-radius:30px; font-size:12px; font-weight: 600; letter-spacing: 0.5px;
-    border:1px solid rgba(255,255,255,0.1); white-space:nowrap; box-shadow: 0 4px 15px rgba(0,0,0,0.5);}
-  .statusbar.ok{color:var(--neon); border-color:var(--neon); text-shadow: 0 0 10px var(--neon-dim);}
-  .statusbar.alert{color:var(--danger); border-color:var(--danger); animation: pulseAlert 1s infinite;}
-  @keyframes pulseAlert { 0%,100%{box-shadow: 0 0 10px var(--danger-dim);} 50%{box-shadow: 0 0 30px var(--danger);} }
+  #call{position:relative;background:#000;overflow:hidden;}
+  .top-hud{position:absolute;top:0;left:0;right:0;padding:16px;z-index:10;display:flex;justify-content:center;pointer-events:none;}
+  .statusbar{background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);color:#fff;padding:8px 20px;border-radius:30px;font-size:12px;font-weight:600;
+    letter-spacing:.5px;border:1px solid rgba(255,255,255,0.1);white-space:nowrap;box-shadow:0 4px 15px rgba(0,0,0,0.5);}
+  .statusbar.ok{color:var(--neon);border-color:var(--neon);text-shadow:0 0 10px var(--neon-dim);}
+  .statusbar.alert{color:var(--danger);border-color:var(--danger);animation:pulseAlert 1s infinite;}
+  @keyframes pulseAlert{0%,100%{box-shadow:0 0 10px var(--danger-dim);}50%{box-shadow:0 0 30px var(--danger);}}
+
+  .settings-btn{position:fixed;top:calc(env(safe-area-inset-top) + 16px);right:16px;width:42px;height:42px;border-radius:50%;z-index:60;
+    background:rgba(0,0,0,0.6);border:1px solid var(--neon);color:var(--neon);display:flex;align-items:center;justify-content:center;cursor:pointer;
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 0 15px var(--neon-dim);transition:all .2s;}
+  .settings-btn:active{transform:scale(.92);}
+  .settings-btn svg{width:22px;height:22px;}
+
+  .settings-panel{position:fixed;top:0;right:0;bottom:0;width:min(92vw,380px);background:rgba(6,12,20,0.96);
+    backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-left:1px solid var(--neon);box-shadow:-10px 0 40px var(--neon-dim);
+    z-index:200;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s cubic-bezier(0.175,0.885,0.32,1.275);}
+  .settings-panel.open{transform:translateX(0);}
+  .sp-head{display:flex;align-items:center;justify-content:space-between;padding:calc(env(safe-area-inset-top) + 16px) 20px 16px;border-bottom:1px solid var(--neon-dim);}
+  .sp-head h3{margin:0;font-size:16px;color:var(--neon);letter-spacing:2px;text-transform:uppercase;}
+  .sp-close{width:34px;height:34px;border-radius:50%;background:rgba(255,42,85,0.15);border:1px solid var(--danger);color:var(--danger);
+    cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;}
+  .sp-body{flex:1;overflow-y:auto;padding:16px 18px calc(env(safe-area-inset-bottom) + 20px);}
+  .sp-section{margin-bottom:22px;}
+  .sp-label{display:block;font-size:11px;color:var(--neon);letter-spacing:1.5px;text-transform:uppercase;font-weight:700;margin-bottom:10px;}
+  .theme-grid,.voice-grid,.mask-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .theme-chip,.voice-chip,.mask-chip{padding:10px 8px;border-radius:10px;background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.1);color:var(--text);cursor:pointer;font-size:11px;text-align:center;font-weight:600;
+    transition:all .2s;display:flex;flex-direction:column;gap:4px;align-items:center;}
+  .theme-chip .swatch{width:100%;height:20px;border-radius:5px;display:block;margin-bottom:3px;}
+  .theme-chip.active,.voice-chip.active,.mask-chip.active{border-color:var(--neon);background:var(--neon-dim);color:var(--neon);box-shadow:0 0 12px var(--neon-dim);}
+  .voice-chip .emoji,.mask-chip .emoji{font-size:16px;}
 
   .video-wrap{position:relative;flex:1;background:#020305;overflow:hidden;}
   #remoteVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000;z-index:1;}
-  
-  #pipContainer {
-    position: absolute; right: 16px; top: 70px; width: 30%; max-width: 130px;
-    aspect-ratio: 3/4; z-index: 15; transition: none;
-    touch-action: none; cursor: pointer;
-  }
-  #localVideo {
-    width: 100%; height: 100%; object-fit: cover; border-radius: 12px; 
-    border: 2px solid var(--neon); background: #111; 
-    box-shadow: 0 0 20px var(--neon-dim);
-    display: block; pointer-events: none;
-  }
-
+  #pipContainer{position:absolute;right:16px;top:70px;width:30%;max-width:130px;aspect-ratio:3/4;z-index:15;touch-action:none;cursor:pointer;}
+  #localVideo{width:100%;height:100%;object-fit:cover;border-radius:12px;border:2px solid var(--neon);background:#111;
+    box-shadow:0 0 20px var(--neon-dim);display:block;pointer-events:none;}
   .audio-avatar{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-    background:radial-gradient(circle at 50% 50%,#0a1520,#020305); z-index: 0;}
-  .pulse{width:150px;height:150px;border-radius:50%;background:var(--neon);
-    opacity:.1;animation:pulseAnim 3s infinite ease-in-out; position: relative;}
-  .pulse::after{content:"";position:absolute;inset:-20px;border-radius:50%;
-    border:2px solid var(--neon);animation:ringAnim 3s infinite ease-out; opacity: 0.5;}
+    background:radial-gradient(circle at 50% 50%,#0a1520,#020305);z-index:0;}
+  .pulse{width:150px;height:150px;border-radius:50%;background:var(--neon);opacity:.1;animation:pulseAnim 3s infinite ease-in-out;position:relative;}
+  .pulse::after{content:"";position:absolute;inset:-20px;border-radius:50%;border:2px solid var(--neon);animation:ringAnim 3s infinite ease-out;opacity:.5;}
   @keyframes pulseAnim{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
   @keyframes ringAnim{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.8);opacity:0}}
-
-  .fp{position:absolute;left:16px;top:65px;background:rgba(0,0,0,0.5);
-    backdrop-filter:blur(10px);padding:6px 10px;border-radius:8px;font-size:9px;
-    color:var(--muted);z-index:10; border:1px solid rgba(255,255,255,0.1); line-height: 1.3; opacity: 0.9;}
+  .fp{position:absolute;left:16px;top:65px;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);padding:6px 10px;border-radius:8px;
+    font-size:9px;color:var(--muted);z-index:10;border:1px solid rgba(255,255,255,0.1);line-height:1.3;opacity:.9;}
   .fp .p2p{color:var(--green);letter-spacing:1.5px;font-weight:800;font-size:10px;text-shadow:0 0 8px var(--green);display:block;margin-bottom:2px}
-  .fp b{color:var(--neon);display:block;font-size:11px;letter-spacing:1.5px; font-family:monospace; margin-top: 2px;}
+  .fp b{color:var(--neon);display:block;font-size:11px;letter-spacing:1.5px;font-family:monospace;margin-top:2px;}
 
-  /* ---------- CONTROLS STYLE ---------- */
-  .controls {
-    display: flex; justify-content: center; align-items: center; gap: 16px;
-    padding: 16px 12px calc(20px + env(safe-area-inset-bottom));
-    background: linear-gradient(to top, rgba(3,5,10,0.95) 20%, transparent);
-    position: absolute; bottom: 0; left: 0; right: 0; z-index: 10;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  .controls.hide { transform: translateY(120%); }
-  
-  .ctrl {
-    width: 48px; height: 48px; border-radius: 50%; border: none;
-    background: transparent; color: #fff; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s; position: relative;
-  }
-  .ctrl svg {
-    width: 24px; height: 24px; fill: none; stroke: currentColor;
-    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: 0.2s;
-  }
-  .ctrl:active { transform: scale(0.9); }
+  .controls{display:flex;justify-content:center;align-items:center;gap:16px;padding:16px 12px calc(20px + env(safe-area-inset-bottom));
+    background:linear-gradient(to top,rgba(3,5,10,0.95) 20%,transparent);position:absolute;bottom:0;left:0;right:0;z-index:10;
+    transition:transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275);}
+  .controls.hide{transform:translateY(120%);}
+  .ctrl{width:48px;height:48px;border-radius:50%;border:none;background:transparent;color:#fff;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;transition:all 0.2s;position:relative;}
+  .ctrl svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:.2s;}
+  .ctrl:active{transform:scale(0.9);}
+  .ctrl.ok{color:var(--green);}
+  .ctrl.off{color:var(--danger);}
+  .ctrl.swap{background:rgba(0,240,255,0.15);color:var(--neon);}
+  .ctrl.swap.rear{background:var(--danger-dim);color:var(--danger);box-shadow:0 0 14px var(--danger-dim);}
+  .ctrl.end{color:var(--green);}
+  .ctrl.end svg,.ctrl.end svg *{stroke:var(--green);}
+  .ctrl.end.pressed{color:var(--danger);background:var(--danger-dim);box-shadow:0 0 22px var(--danger);transform:scale(.92);}
+  .ctrl.end.pressed svg,.ctrl.end.pressed svg *{stroke:var(--danger);}
 
-  /* Mic, Video, Speaker: hijau saat aktif, merah saat mati */
-  .ctrl.ok { color: var(--green); }
-  .ctrl.off { color: var(--danger); }
+  #swipeIndicator{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:50px;height:5px;background:rgba(255,255,255,0.3);
+    border-radius:3px;z-index:15;cursor:pointer;transition:.3s;opacity:0;pointer-events:none;}
+  #swipeIndicator.visible{opacity:1;pointer-events:auto;}
+  #swipeIndicator::after{content:'▲';position:absolute;top:-18px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.5);font-size:12px;}
 
-  /* Flip kamera: merah saat kamera belakang aktif */
-  .ctrl.swap { background: rgba(0, 240, 255, 0.15); color: var(--neon); }
-  .ctrl.swap.rear { background: var(--danger-dim); color: var(--danger); box-shadow: 0 0 14px var(--danger-dim); }
+  #cyberAlert{position:absolute;inset:0;z-index:50;background:rgba(0,0,0,0.9);backdrop-filter:blur(15px);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:left;font-family:monospace;}
+  #cyberAlert .alert-box{width:100%;max-width:400px;border:2px solid var(--danger);background:rgba(20,0,5,0.8);
+    padding:20px;border-radius:10px;box-shadow:0 0 50px var(--danger-dim);position:relative;overflow:hidden;}
+  #cyberAlert .alert-box::before{content:"⚠️ SECURITY BREACH DETECTED ⚠️";position:absolute;top:0;left:0;width:100%;
+    background:var(--danger);color:#000;font-weight:900;text-align:center;padding:4px;font-size:12px;letter-spacing:2px;}
+  #cyberAlert h2{color:var(--danger);margin:20px 0 10px;font-size:18px;text-transform:uppercase;border-bottom:1px dashed var(--danger-dim);padding-bottom:10px;}
+  #cyberAlert .data-row{display:flex;justify-content:space-between;margin:8px 0;font-size:12px;color:#fff;}
+  #cyberAlert .data-row span:first-child{color:var(--danger);opacity:.8;}
+  #cyberAlert .data-row span:last-child{font-weight:bold;color:#fff;text-shadow:0 0 5px var(--danger);}
+  #cyberAlert .noise-warn{margin-top:15px;font-size:11px;color:var(--warning);border:1px solid var(--warning);
+    padding:8px;border-radius:5px;background:rgba(255,204,0,0.1);line-height:1.4;}
+  #cyberAlert .secure-badge{margin-top:20px;text-align:center;font-size:13px;font-weight:bold;color:var(--neon);
+    text-shadow:0 0 10px var(--neon-dim);border:1px solid var(--neon);padding:10px;border-radius:8px;background:var(--neon-dim);}
+  .scanlines{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(255,255,255,0),rgba(255,255,255,0) 50%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.2));
+    background-size:100% 4px;z-index:51;animation:scan 10s linear infinite;}
+  @keyframes scan{0%{background-position:0 0;}100%{background-position:0 100%;}}
+  #call.blurred .video-wrap{filter:blur(40px);pointer-events:none;}
+  #call.blurred .controls{filter:blur(10px);pointer-events:none;}
+  #call.blurred::after{content:"🔒 KONEKSI DIMATIKAN SEMENTARA";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    color:var(--danger);font-size:16px;font-weight:900;z-index:20;text-align:center;padding:20px;background:rgba(0,0,0,0.8);
+    backdrop-filter:blur(10px);letter-spacing:2px;}
 
-  /* Tutup telepon: gagang hijau tanpa garis, merah + garis miring saat diklik */
-  .ctrl.end { color: var(--green); }
-  .ctrl.end svg, .ctrl.end svg * { stroke: var(--green); }
-  .ctrl.end.pressed { color: var(--danger); background: var(--danger-dim); box-shadow: 0 0 22px var(--danger); transform: scale(.92); }
-  .ctrl.end.pressed svg, .ctrl.end.pressed svg * { stroke: var(--danger); }
-
-  #swipeIndicator {
-    position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
-    width: 50px; height: 5px; background: rgba(255,255,255,0.3); border-radius: 3px;
-    z-index: 15; cursor: pointer; transition: 0.3s; opacity: 0; pointer-events: none;
-  }
-  #swipeIndicator.visible { opacity: 1; pointer-events: auto; }
-  #swipeIndicator::after {
-    content: '▲'; position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
-    color: rgba(255,255,255,0.5); font-size: 12px;
-  }
-
-  /* 🚨 CYBER ATTACK ALERT HUD */
-  #cyberAlert {
-    position: absolute; inset: 0; z-index: 50; background: rgba(0,0,0,0.9);
-    backdrop-filter: blur(15px); display: flex; flex-direction: column; align-items: center; justify-content: center;
-    padding: 20px; text-align: left; font-family: monospace;
-  }
-  #cyberAlert .alert-box {
-    width: 100%; max-width: 400px; border: 2px solid var(--danger); background: rgba(20, 0, 5, 0.8);
-    padding: 20px; border-radius: 10px; box-shadow: 0 0 50px var(--danger-dim);
-    position: relative; overflow: hidden;
-  }
-  #cyberAlert .alert-box::before {
-    content: "⚠️ SECURITY BREACH DETECTED ⚠️";
-    position: absolute; top: 0; left: 0; width: 100%; background: var(--danger); color: #000;
-    font-weight: 900; text-align: center; padding: 4px; font-size: 12px; letter-spacing: 2px;
-  }
-  #cyberAlert h2 { color: var(--danger); margin: 20px 0 10px; font-size: 18px; text-transform: uppercase; border-bottom: 1px dashed var(--danger-dim); padding-bottom: 10px;}
-  #cyberAlert .data-row { display: flex; justify-content: space-between; margin: 8px 0; font-size: 12px; color: #fff; }
-  #cyberAlert .data-row span:first-child { color: var(--danger); opacity: 0.8; }
-  #cyberAlert .data-row span:last-child { font-weight: bold; color: #fff; text-shadow: 0 0 5px var(--danger); }
-  #cyberAlert .noise-warn { margin-top: 15px; font-size: 11px; color: var(--warning); border: 1px solid var(--warning); padding: 8px; border-radius: 5px; background: rgba(255,204,0,0.1); line-height: 1.4;}
-  #cyberAlert .secure-badge { margin-top: 20px; text-align: center; font-size: 13px; font-weight: bold; color: var(--neon); text-shadow: 0 0 10px var(--neon-dim); border: 1px solid var(--neon); padding: 10px; border-radius: 8px; background: var(--neon-dim);}
-  
-  .scanlines {
-    position: absolute; inset: 0; pointer-events: none;
-    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
-    background-size: 100% 4px; z-index: 51; animation: scan 10s linear infinite;
-  }
-  @keyframes scan { 0% { background-position: 0 0; } 100% { background-position: 0 100%; } }
-
-  #call.blurred .video-wrap { filter: blur(40px); pointer-events:none; }
-  #call.blurred .controls { filter: blur(10px); pointer-events:none; }
-  #call.blurred::after{
-    content:"🔒 KONEKSI DIMATIKAN SEMENTARA";
-    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-    color:var(--danger);font-size:16px;font-weight:900;z-index:20;text-align:center;padding:20px;
-    background:rgba(0,0,0,0.8);backdrop-filter:blur(10px); letter-spacing: 2px;
-  }
-
-  /* ---------- PURGE / TOTAL ERASURE SCREEN ---------- */
   #purge{position:fixed;inset:0;z-index:300;background:#000;display:none;flex-direction:column;overflow:hidden;font-family:'Courier New',monospace;color:var(--neon)}
   #purge.on{display:flex}
   #purgeCanvas{position:absolute;inset:0;width:100%;height:100%;opacity:.6}
   #purge .vignette{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,transparent 15%,#000 95%);pointer-events:none}
-  #purge .panel{position:relative;z-index:2;margin:auto;width:min(92vw,440px);padding:20px;border:1px solid var(--neon);border-radius:14px;background:rgba(0,10,16,.8);backdrop-filter:blur(8px);box-shadow:0 0 40px var(--neon-dim),inset 0 0 30px rgba(0,240,255,.06)}
+  #purge .panel{position:relative;z-index:2;margin:auto;width:min(92vw,440px);padding:20px;border:1px solid var(--neon);border-radius:14px;
+    background:rgba(0,10,16,.8);backdrop-filter:blur(8px);box-shadow:0 0 40px var(--neon-dim),inset 0 0 30px var(--neon-dim)}
   #purge .ptitle{font-size:12px;letter-spacing:3px;font-weight:800;text-align:center;color:#ff2a55;text-shadow:0 0 12px #ff2a55}
   #purge .ptitle.done{color:var(--green);text-shadow:0 0 14px var(--green)}
   #purge .bar{height:6px;border-radius:4px;background:rgba(0,240,255,.12);margin:14px 0 6px;overflow:hidden}
@@ -226,27 +170,23 @@
   #purge.exit #purgeCanvas{transition:opacity 1s;opacity:0}
   @keyframes collapseP{0%{transform:scale(1);opacity:1}55%{transform:scaleX(1) scaleY(.02);opacity:1;filter:brightness(4)}100%{transform:scale(0);opacity:0}}
 
-  .toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(20px);
-    background:rgba(0,240,255,0.9);color:#000;font-weight:bold;padding:12px 24px;border-radius:30px;
-    font-size:13px;opacity:0;pointer-events:none;transition:.3s;z-index:99;max-width:90vw;text-align:center;
-    box-shadow: 0 0 20px var(--neon-dim);}
+  .toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(20px);background:var(--neon);color:#000;
+    font-weight:bold;padding:12px 24px;border-radius:30px;font-size:13px;opacity:0;pointer-events:none;transition:.3s;z-index:99;
+    max-width:90vw;text-align:center;box-shadow:0 0 20px var(--neon-dim);}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
 
-<!-- ============ SETUP ============ -->
+<!-- SETUP -->
 <div id="setup" class="screen">
   <div class="card">
     <div class="logo"><div class="dot"></div><h1>Anti Sadap</h1></div>
     <p class="sub">Quantum Voice & Video · Hybrid ECDH + AES-256</p>
-
     <label>ID Telegram Anda</label>
     <input id="myId" type="text" inputmode="numeric" placeholder="Ketik ID Anda..." autocomplete="off" />
-
     <label>ID Telegram Pasangan</label>
     <input id="partnerId" type="text" inputmode="numeric" placeholder="Ketik ID Pasangan..." autocomplete="off" />
-
     <label>Mode Transmisi</label>
     <div class="modes">
       <button class="mode active" data-mode="audio">
@@ -258,45 +198,29 @@
         Video
       </button>
     </div>
-
     <details>
       <summary>Parameter Keamanan Lanjutan</summary>
       <label>Kunci Rahasia Bersama (Opsional)</label>
       <input id="passphrase" type="password" placeholder="Disepakati berdua" autocomplete="new-password" />
-      <label class="check">
-        <input type="checkbox" id="extraEnc" checked />
-        Aktifkan Dynamic Key Ratchet Per-Frame (SHA-512)
-      </label>
+      <label class="check"><input type="checkbox" id="extraEnc" checked />Aktifkan Dynamic Key Ratchet Per-Frame (SHA-512)</label>
     </details>
-
     <button id="startBtn" class="primary">Mulai</button>
-    <p class="foot">
-      Sistem Zero-Trace. Tidak ada data yang disimpan. Kunci enkripsi dihancurkan saat panggilan berakhir.
-    </p>
+    <p class="foot">Sistem Zero-Trace. Tidak ada data yang disimpan. Kunci enkripsi dihancurkan saat panggilan berakhir.</p>
   </div>
 </div>
 
-<!-- ============ CALL ============ -->
+<!-- CALL -->
 <div id="call" class="screen hidden">
-  <div class="top-hud">
-    <div class="statusbar" id="statusBar">Menghubungkan...</div>
-  </div>
-  
+  <div class="top-hud"><div class="statusbar" id="statusBar">Menghubungkan...</div></div>
   <div class="video-wrap" id="videoWrap">
     <video id="remoteVideo" autoplay playsinline></video>
-    
-    <div id="pipContainer" class="hidden">
-      <video id="localVideo" autoplay playsinline muted></video>
-    </div>
-
+    <div id="pipContainer" class="hidden"><video id="localVideo" autoplay playsinline muted></video></div>
     <div id="audioAvatar" class="audio-avatar"><div class="pulse"></div></div>
-    
     <div class="fp" id="fpBox" style="display:none">
       <span class="p2p">🔐 SECURITY P2P</span>
       Cryptographic Fingerprint:
       <b id="fpValue">—</b>
     </div>
-
     <div id="cyberAlert" class="hidden">
       <div class="scanlines"></div>
       <div class="alert-box">
@@ -305,34 +229,41 @@
         <div class="data-row"><span>TOOL USED:</span> <span id="attackerTool">Wireshark / MITM Proxy</span></div>
         <div class="data-row"><span>THREAT LEVEL:</span> <span style="color:var(--danger)">CRITICAL</span></div>
         <div class="data-row"><span>ACTION TAKEN:</span> <span style="color:var(--neon)">NOISE INJECTED</span></div>
-        
-        <div class="noise-warn">
-          ⚠️ Sistem mendeteksi upaya penyadapan paket data. Kami telah mengirimkan sinyal noise frekuensi tinggi ke perangkat penyadap. Audio asli Anda tetap aman dan terenkripsi.
-        </div>
-        
-        <div class="secure-badge">
-          🛡️ KONEKSI ANDA TERLINDUNGI 100%
-        </div>
+        <div class="noise-warn">⚠️ Sistem mendeteksi upaya penyadapan paket data. Audio asli Anda tetap aman dan terenkripsi.</div>
+        <div class="secure-badge">🛡️ KONEKSI ANDA TERLINDUNGI 100%</div>
       </div>
     </div>
   </div>
-  
   <div id="swipeIndicator"></div>
-
   <div class="controls" id="controlsBar">
     <button id="muteBtn" class="ctrl ok" title="Mute"></button>
-    <button id="camBtn" class="ctrl off" title="Nyalakan Kamera"></button>
-    
-    <button id="flipBtn" class="ctrl swap" title="Ganti Kamera Depan/Belakang">
+    <button id="camBtn" class="ctrl off" title="Kamera"></button>
+    <button id="flipBtn" class="ctrl swap" title="Ganti Kamera">
       <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
     </button>
-
     <button id="speakerBtn" class="ctrl" title="Speaker"></button>
     <button id="endBtn" class="ctrl end" title="Akhiri"></button>
   </div>
 </div>
 
-<!-- ============ PURGE (TOTAL ERASURE) ============ -->
+<!-- SETTINGS -->
+<button id="settingsBtn" class="settings-btn" title="Pengaturan">
+  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="5" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="19" r="1.8" fill="currentColor"/></svg>
+</button>
+<div id="settingsPanel" class="settings-panel">
+  <div class="sp-head"><h3>⚙️ Pengaturan</h3><button id="closeSettings" class="sp-close">✕</button></div>
+  <div class="sp-body">
+    <div class="sp-section"><label class="sp-label">🎨 Tema Tampilan</label><div class="theme-grid" id="themeGrid"></div></div>
+    <div class="sp-section"><label class="sp-label">🎤 Karakter Suara</label><div class="voice-grid" id="voiceGrid"></div></div>
+    <div class="sp-section"><label class="sp-label">🎭 Topeng Wajah</label><div class="mask-grid" id="maskGrid"></div></div>
+    <div class="sp-section"><label class="sp-label">🖼️ Latar Video Call</label><div class="mask-grid" id="bgGrid"></div></div>
+  </div>
+</div>
+
+<video id="faceInputVideo" autoplay playsinline muted style="position:fixed;left:0;top:0;width:2px;height:2px;opacity:.01;pointer-events:none"></video>
+<input type="file" id="bgFile" accept="image/*,video/*" hidden>
+
+<!-- PURGE -->
 <div id="purge">
   <canvas id="purgeCanvas"></canvas><div class="vignette"></div>
   <div class="hexrow" id="hexA" style="margin-top:calc(env(safe-area-inset-top) + 14px)"></div>
@@ -351,1082 +282,1103 @@
 
 <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script>
-(() => {
+(function(){
 "use strict";
 
-const state = {
-  myId: "", partnerId: "", roomId: "",
-  mediaKeyBytes: null, fingerprint: "", isHost: false,
-  outRatchet: null, inRatchet: null,
-  peer: null, call: null, dataConn: null,
-  localStream: null, remoteStream: null,
-  callActive: false, ended: false,
-  frameEnc: false, frameEncAgreed: false, frameEncActive: false,
-  remoteCaps: null, facing: "user", flipBusy: false,
-  retryTimer: null,
-  fingerprintTimer: null,
-  hideControlsTimer: null,
-  speakerActive: false,
-  captureAPIsDisabled: false,
-  
-  ecdhKeyPair: null, ecdhSharedSecret: null, ecdhPublicKeyHex: "", ecdhPartnerReady: false,
-  pbkdf2Secret: null,
-  
-  intrusionDetected: false,
-  intrusionMonitorTimer: null,
-  audioContext: null,
-  noiseOscillator: null,
-
-  mode: "audio",
-  isDragging: false,
-  isSwapped: false
+var state = {
+  myId:"", partnerId:"", roomId:"", mediaKeyBytes:null, fingerprint:"", isHost:false,
+  outRatchet:null, inRatchet:null, peer:null, call:null, dataConn:null,
+  localStream:null, remoteStream:null, rawCameraStream:null,
+  callActive:false, ended:false, frameEnc:false, frameEncAgreed:false, frameEncActive:false,
+  remoteCaps:null, facing:"user", flipBusy:false, retryTimer:null, fingerprintTimer:null,
+  hideControlsTimer:null, speakerActive:false, captureAPIsDisabled:false,
+  ecdhKeyPair:null, ecdhSharedSecret:null, ecdhPublicKeyHex:"", ecdhPartnerReady:false, pbkdf2Secret:null,
+  intrusionDetected:false, intrusionMonitorTimer:null, audioContext:null, noiseOscillator:null,
+  mode:"audio", isDragging:false, isSwapped:false,
+  theme:"quantum", voice:"normal", voiceAudioCtx:null, voicePitchNode:null, voiceFilterNodes:[],
+  mask:"none", maskActive:false, faceMesh:null, faceCanvas:null, faceCtx:null, faceRAF:null,
+  sharedAudioCtx:null,camOn:false,bg:{type:'none'},pipe:null,aud:null,running:false,keysReady:false,calling:false
 };
 
-const $ = (id) => document.getElementById(id);
-const els = {
-  setup: $("setup"), call: $("call"),
-  myId: $("myId"), partnerId: $("partnerId"), passphrase: $("passphrase"),
-  extraEnc: $("extraEnc"), startBtn: $("startBtn"),
-  remoteVideo: $("remoteVideo"), localVideo: $("localVideo"),
-  audioAvatar: $("audioAvatar"), statusBar: $("statusBar"),
-  fpBox: $("fpBox"), fpValue: $("fpValue"),
-  muteBtn: $("muteBtn"), camBtn: $("camBtn"), flipBtn: $("flipBtn"), 
-  speakerBtn: $("speakerBtn"), endBtn: $("endBtn"), toast: $("toast"),
-  controlsBar: $("controlsBar"), swipeIndicator: $("swipeIndicator"), videoWrap: $("videoWrap"),
-  cyberAlert: $("cyberAlert"), attackerIp: $("attackerIp"), attackerTool: $("attackerTool"),
-  pipContainer: $("pipContainer")
+function $(id){return document.getElementById(id);}
+var els = {
+  setup:$("setup"), call:$("call"), myId:$("myId"), partnerId:$("partnerId"), passphrase:$("passphrase"),
+  extraEnc:$("extraEnc"), startBtn:$("startBtn"), remoteVideo:$("remoteVideo"), localVideo:$("localVideo"),
+  audioAvatar:$("audioAvatar"), statusBar:$("statusBar"), fpBox:$("fpBox"), fpValue:$("fpValue"),
+  muteBtn:$("muteBtn"), camBtn:$("camBtn"), flipBtn:$("flipBtn"), speakerBtn:$("speakerBtn"), endBtn:$("endBtn"),
+  toast:$("toast"), controlsBar:$("controlsBar"), swipeIndicator:$("swipeIndicator"), videoWrap:$("videoWrap"),
+  cyberAlert:$("cyberAlert"), attackerIp:$("attackerIp"), attackerTool:$("attackerTool"), pipContainer:$("pipContainer"),
+  settingsBtn:$("settingsBtn"), settingsPanel:$("settingsPanel"), closeSettings:$("closeSettings"),
+  themeGrid:$("themeGrid"), voiceGrid:$("voiceGrid"), maskGrid:$("maskGrid"), faceInputVideo:$("faceInputVideo")
 };
 
-// ==========================================
-// IKON KONTROL
-// ==========================================
-// Semua garis miring memakai koordinat yang sama (1,1 -> 23,23), stroke 2, agar presisi & rapi
-const SLASH = `<line x1="1" y1="1" x2="23" y2="23"></line>`;
-const SPK_BODY = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>`;
-const ICON = {
-  micOn:  `<svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>`,
-  micOff: `<svg viewBox="0 0 24 24"><line x1="1" y1="1" x2="23" y2="23"></line><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"></path><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>`,
-  camOn:  `<svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>`,
-  camOff: `<svg viewBox="0 0 24 24"><path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`,
-  // Speaker ON (loudspeaker aktif): hijau, bentuk asli dengan gelombang suara
-  spkOn:  `<svg viewBox="0 0 24 24">${SPK_BODY}</svg>`,
-  // Speaker MUTE: bentuk yang sama persis + garis miring, seluruhnya merah
-  spkOff: `<svg viewBox="0 0 24 24">${SPK_BODY}${SLASH}</svg>`,
-  phoneOn:  `<svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`,
-  phoneOff: `<svg viewBox="0 0 24 24"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"></path><line x1="23" y1="1" x2="1" y2="23"></line></svg>`
+// ============ ICONS ============
+var SLASH = '<line x1="1" y1="1" x2="23" y2="23"></line>';
+var SPK_BODY = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>';
+var ICON = {
+  micOn:'<svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>',
+  micOff:'<svg viewBox="0 0 24 24"><line x1="1" y1="1" x2="23" y2="23"></line><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"></path><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>',
+  camOn:'<svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>',
+  camOff:'<svg viewBox="0 0 24 24"><path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>',
+  spkOn:'<svg viewBox="0 0 24 24">'+SPK_BODY+'</svg>',
+  spkOff:'<svg viewBox="0 0 24 24">'+SPK_BODY+SLASH+'</svg>',
+  phoneOn:'<svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>',
+  phoneOff:'<svg viewBox="0 0 24 24"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"></path><line x1="23" y1="1" x2="1" y2="23"></line></svg>'
 };
-
-function setBtn(btn, cls, icon) {
-  btn.classList.remove("ok", "off", "active");
-  if (cls) btn.classList.add(cls);
-  btn.innerHTML = icon;
-}
-const setMicUI = (on) => setBtn(els.muteBtn, on ? "ok" : "off", on ? ICON.micOn : ICON.micOff);
-const setCamUI = (on) => setBtn(els.camBtn, on ? "ok" : "off", on ? ICON.camOn : ICON.camOff);
-const setSpeakerUI = (on) => setBtn(els.speakerBtn, on ? "ok" : "off", on ? ICON.spkOn : ICON.spkOff);
-function initControlIcons() {
-  setMicUI(true);
-  setCamUI(false);
-  setSpeakerUI(false);
-  els.endBtn.classList.remove("pressed");
-  els.endBtn.innerHTML = ICON.phoneOn;
-  els.flipBtn.classList.remove("rear");
+function setBtn(btn,cls,icon){btn.classList.remove("ok","off","active");if(cls)btn.classList.add(cls);btn.innerHTML=icon;}
+function setMicUI(on){setBtn(els.muteBtn,on?"ok":"off",on?ICON.micOn:ICON.micOff);}
+function setCamUI(on){setBtn(els.camBtn,on?"ok":"off",on?ICON.camOn:ICON.camOff);}
+function setSpeakerUI(on){setBtn(els.speakerBtn,on?"ok":"off",on?ICON.spkOn:ICON.spkOff);}
+function initControlIcons(){
+  setMicUI(true); setCamUI(false); setSpeakerUI(false);
+  els.endBtn.classList.remove("pressed"); els.endBtn.innerHTML=ICON.phoneOn; els.flipBtn.classList.remove("rear");
 }
 initControlIcons();
 
-// ==========================================
-// TELEGRAM AUTO-FILL
-// ==========================================
-window.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    let startParam = urlParams.get('tgWebAppStartParam') || urlParams.get('startapp');
-    let myTelegramId = null;
-
-    if (window.Telegram && window.Telegram.WebApp) {
-        window.Telegram.WebApp.ready();
-        window.Telegram.WebApp.expand();
-        const user = window.Telegram.WebApp.initDataUnsafe?.user;
-        if (user) myTelegramId = String(user.id);
-    }
-
-    if (myTelegramId) {
-        els.myId.value = myTelegramId;
-        els.myId.parentElement.style.display = 'none';
-    }
-
-    if (startParam && /^\d+$/.test(startParam)) {
-        els.partnerId.value = startParam;
-        els.partnerId.parentElement.style.display = 'none';
-        setTimeout(() => toast("Terdeteksi Link Rahasia! ID Pasangan dimuat otomatis.", 4000), 1000);
-    }
+// ============ TELEGRAM ============
+window.addEventListener('DOMContentLoaded', function(){
+  var params = new URLSearchParams(window.location.search);
+  var startParam = params.get('tgWebAppStartParam') || params.get('startapp');
+  var myTelegramId = null;
+  if (window.Telegram && window.Telegram.WebApp) {
+    window.Telegram.WebApp.ready();
+    window.Telegram.WebApp.expand();
+    var u = window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user;
+    if (u) myTelegramId = String(u.id);
+  }
+  if (myTelegramId) { els.myId.value = myTelegramId; els.myId.parentElement.style.display='none'; }
+  if (startParam && /^\d+$/.test(startParam)) {
+    els.partnerId.value = startParam;
+    els.partnerId.parentElement.style.display='none';
+    setTimeout(function(){toast("Link Rahasia terdeteksi.",3000);},800);
+  }
 });
 
-// ==========================================
-// UTILITIES
-// ==========================================
-function toast(msg, ms = 3200) {
-  els.toast.textContent = msg;
-  els.toast.classList.add("show");
-  clearTimeout(toast._t);
-  toast._t = setTimeout(() => els.toast.classList.remove("show"), ms);
+// ============ UTIL ============
+function toast(msg,ms){ms=ms||3200;els.toast.textContent=msg;els.toast.classList.add("show");
+  clearTimeout(toast._t);toast._t=setTimeout(function(){els.toast.classList.remove("show");},ms);}
+function showScreen(name){
+  els.setup.classList.toggle("hidden",name!=="setup");
+  els.call.classList.toggle("hidden",name!=="call");
 }
-function showScreen(name) {
-  els.setup.classList.toggle("hidden", name !== "setup");
-  els.call.classList.toggle("hidden", name !== "call");
+function setStatus(text,ok,alert){
+  els.statusBar.textContent=text;
+  els.statusBar.classList.toggle("ok",!!ok);
+  els.statusBar.classList.toggle("alert",!!alert);
 }
-function setStatus(text, ok = false, alert = false) {
-  els.statusBar.textContent = text;
-  els.statusBar.classList.toggle("ok", ok);
-  els.statusBar.classList.toggle("alert", alert);
-}
-function supportsFrameEncryption() {
-  return typeof RTCRtpSender !== "undefined" && typeof RTCRtpSender.prototype.createEncodedStreams === "function";
-}
-function concatBytes(...arrs) {
-  const len = arrs.reduce((s, a) => s + a.byteLength, 0);
-  const out = new Uint8Array(len);
-  let off = 0;
-  for (const a of arrs) { out.set(a, off); off += a.byteLength; }
-  return out;
-}
-function bufToHex(buffer) {
-  return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, '0')).join('');
-}
-function hexToBuf(hex) {
-  const matches = hex.match(/[\da-f]{2}/gi) || [];
-  return new Uint8Array(matches.map(h => parseInt(h, 16))).buffer;
+function supportsFrameEncryption(){return typeof RTCRtpSender!=="undefined"&&typeof RTCRtpSender.prototype.createEncodedStreams==="function";}
+function concatBytes(){var arrs=arguments;var len=0;for(var i=0;i<arrs.length;i++)len+=arrs[i].byteLength;
+  var out=new Uint8Array(len),off=0;for(var j=0;j<arrs.length;j++){out.set(arrs[j],off);off+=arrs[j].byteLength;}return out;}
+function bufToHex(buffer){return Array.from(new Uint8Array(buffer)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');}
+function hexToBuf(hex){var m=hex.match(/[\da-f]{2}/gi)||[];return new Uint8Array(m.map(function(h){return parseInt(h,16);})).buffer;}
+function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
+
+// ============ THEMES ============
+var THEMES = {
+  quantum:{name:"Quantum",c:{bg:'#03050a',neon:'#00f0ff',text:'#e0f7fa',muted:'#6a8a9a'}},
+  matrix:{name:"Matrix",c:{bg:'#000a00',neon:'#00ff41',text:'#c8ffd4',muted:'#3d7a4a'}},
+  cyberpunk:{name:"Cyberpunk",c:{bg:'#0a0014',neon:'#ff00ff',text:'#ffe0ff',muted:'#a056a0'}},
+  abstract:{name:"Abstract",c:{bg:'#0d0417',neon:'#a855f7',text:'#e9d5ff',muted:'#7c3aed'}},
+  blackcrystal:{name:"Black Crystal",c:{bg:'#000000',neon:'#c0c8ff',text:'#e8ecff',muted:'#5a6480'}},
+  bloodmoon:{name:"Blood Moon",c:{bg:'#0a0000',neon:'#ff2244',text:'#ffd8dc',muted:'#7a1a28'}},
+  aurora:{name:"Aurora",c:{bg:'#020c14',neon:'#00ffaa',text:'#d4fff0',muted:'#3a8a75'}},
+  gold:{name:"Royal Gold",c:{bg:'#0a0800',neon:'#ffd700',text:'#fff4c8',muted:'#806010'}}
+};
+function applyTheme(key){
+  var t=THEMES[key]; if(!t)return;
+  state.theme=key;
+  var r=document.documentElement.style;
+  r.setProperty('--bg',t.c.bg); r.setProperty('--neon',t.c.neon); r.setProperty('--text',t.c.text); r.setProperty('--muted',t.c.muted);
+  r.setProperty('--neon-dim',t.c.neon+'26');r.setProperty('--border',t.c.neon+'33');
+  document.body.style.backgroundImage='radial-gradient(circle at 50% 0%,'+t.c.neon+'0d 0%,transparent 50%),linear-gradient('+t.c.neon+'08 1px,transparent 1px),linear-gradient(90deg,'+t.c.neon+'08 1px,transparent 1px)';
+  var chips=document.querySelectorAll('.theme-chip');
+  for(var i=0;i<chips.length;i++){chips[i].classList.toggle('active',chips[i].dataset.theme===key);}
 }
 
-// ==========================================
-// SWAP LAYAR (TAP PIP)
-// ==========================================
-function performSwap() {
-    if (!state.localStream) return;
-    state.isSwapped = !state.isSwapped;
+// ============ VOICES (AudioWorklet pitch shifter, 2-tap crossfade ~25ms) ============
+var VOICES={
+ normal:{name:"Normal",emoji:"🎙️",pitch:1,filters:[]},
+ anonymous:{name:"Anonim",emoji:"👤",pitch:.86,filters:[{type:'peaking',freq:1200,gain:-4,Q:1},{type:'lowpass',freq:5000}]},
+ child:{name:"Anak-anak",emoji:"🧒",pitch:1.5,filters:[{type:'highshelf',freq:3000,gain:5}]},
+ mysterious:{name:"Laki Misterius",emoji:"🕵️",pitch:.76,filters:[{type:'lowshelf',freq:200,gain:6},{type:'lowpass',freq:3800}]},
+ male:{name:"Laki-laki",emoji:"👨",pitch:.88,filters:[{type:'lowshelf',freq:300,gain:3}]},
+ female:{name:"Wanita",emoji:"👩",pitch:1.3,filters:[{type:'highshelf',freq:2500,gain:4}]},
+ robot:{name:"Robot",emoji:"🤖",pitch:1,ring:70,mix:.85,filters:[{type:'highpass',freq:300},{type:'peaking',freq:1500,gain:4,Q:2}]},
+ ghost:{name:"Hantu",emoji:"👻",pitch:.72,ring:6,mix:.35,filters:[{type:'lowpass',freq:2600}]},
+ deep:{name:"Berat",emoji:"🎭",pitch:.62,filters:[{type:'lowshelf',freq:200,gain:8}]},
+ alien:{name:"Alien",emoji:"👽",pitch:1.6,ring:35,mix:.4,filters:[{type:'bandpass',freq:1500,Q:.7}]}
+};
+var WK='class P extends AudioWorkletProcessor{constructor(){super();this.b=new Float32Array(8192);this.w=0;this.p=1;this.ph=0;this.rf=0;this.mx=0;this.t=0;this.port.onmessage=e=>{this.p=e.data.pitch;this.rf=e.data.ring||0;this.mx=e.data.mix||0;};}process(i,o){const a=i[0]&&i[0][0],y=o[0]&&o[0][0];if(!y)return true;if(!a){y.fill(0);return true;}const N=8192,W=2048;for(let k=0;k<y.length;k++){this.b[this.w]=a[k];this.ph+=(1-this.p)/W;this.ph-=Math.floor(this.ph);const d1=this.ph*W,d2=((this.ph+.5)%1)*W,g=Math.sin(Math.PI*this.ph),g1=g*g,g2=1-g1;const r=(d)=>{let x=this.w-d;if(x<0)x+=N;const q=Math.floor(x),f=x-q;return this.b[q%N]*(1-f)+this.b[(q+1)%N]*f;};let s=r(d1)*g1+r(d2)*g2;if(this.rf){this.t+=this.rf/sampleRate;if(this.t>1)this.t-=1;s=s*(1-this.mx)+s*this.mx*Math.sin(6.2831853*this.t);}y[k]=s;this.w=(this.w+1)%N;}return true;}}registerProcessor("pp",P);';
+function buildAudio(raw){
+  var at=raw.getAudioTracks()[0];if(!at)return null;
+  var C=window.AudioContext||window.webkitAudioContext,ctx=new C({latencyHint:'interactive'});
+  var A={ctx:ctx,src:ctx.createMediaStreamSource(new MediaStream([at])),dest:ctx.createMediaStreamDestination(),nodes:[],wk:false};
+  state.aud=A;
+  if(ctx.audioWorklet){ctx.audioWorklet.addModule(URL.createObjectURL(new Blob([WK],{type:'application/javascript'}))).then(function(){A.wk=true;rewireVoice();}).catch(function(){toast('Pitch realtime tidak didukung perangkat ini');});}
+  rewireVoice();if(ctx.resume)ctx.resume();
+  return A.dest.stream.getAudioTracks()[0];
+}
+function rewireVoice(){
+  var A=state.aud;if(!A)return;
+  A.nodes.forEach(function(n){try{n.disconnect();}catch(e){}});try{A.src.disconnect();}catch(e){}A.nodes=[];
+  var v=VOICES[state.voice]||VOICES.normal,last=A.src;
+  if((v.pitch!==1||v.ring)&&A.wk){var w=new AudioWorkletNode(A.ctx,'pp',{channelCount:1,channelCountMode:'explicit',outputChannelCount:[1]});w.port.postMessage({pitch:v.pitch,ring:v.ring||0,mix:v.mix||0});last.connect(w);last=w;A.nodes.push(w);}
+  v.filters.forEach(function(f){var q=A.ctx.createBiquadFilter();q.type=f.type;q.frequency.value=f.freq;if(f.Q!==undefined)q.Q.value=f.Q;if(f.gain!==undefined)q.gain.value=f.gain;last.connect(q);last=q;A.nodes.push(q);});
+  last.connect(A.dest);
+}
+function applyVoiceCharacter(k){
+  state.voice=k;
+  if(!state.aud){toast('🎤 '+VOICES[k].name+' dipilih, aktif saat panggilan dimulai',2200);return;}
+  if(state.aud.ctx.state==='suspended')state.aud.ctx.resume();
+  rewireVoice();toast('🎤 Suara: '+VOICES[k].name,1800);
+}
 
-    if (state.isSwapped) {
-        els.remoteVideo.srcObject = state.localStream;
-        els.remoteVideo.muted = true;
-        if (state.remoteStream) {
-            els.localVideo.srcObject = state.remoteStream;
-            els.localVideo.muted = false;
-        } else {
-            els.localVideo.srcObject = null;
-        }
-    } else {
-        if (state.remoteStream) {
-            els.remoteVideo.srcObject = state.remoteStream;
-            els.remoteVideo.muted = false;
-        } else {
-            els.remoteVideo.srcObject = null;
-        }
-        els.localVideo.srcObject = state.localStream;
-        els.localVideo.muted = true;
+// ============ PIPELINE: kamera -> canvas (latar + topeng) -> captureStream -> WebRTC (+enkripsi frame) ============
+var MP='https://cdn.jsdelivr.net/npm/@mediapipe/';
+function loadJS(u){return new Promise(function(r){var s=document.createElement('script');s.src=u;s.crossOrigin='anonymous';s.onload=function(){r(true);};s.onerror=function(){r(false);};document.head.appendChild(s);});}
+function attachCam(){var v=els.faceInputVideo;v.srcObject=state.rawCameraStream;v.muted=true;v.play().catch(function(){});state.camOn=true;}
+function buildPipeline(raw){
+  var cv=document.createElement('canvas');cv.width=640;cv.height=480;
+  state.pipe={cv:cv,x:cv.getContext('2d'),lm:null,mc:null,tmp:document.createElement('canvas'),lay:document.createElement('canvas')};
+  state.camOn=false;if(raw.getVideoTracks().length)attachCam();
+  var vt=cv.captureStream(30).getVideoTracks()[0],at=buildAudio(raw);
+  state.running=true;loop();
+  return new MediaStream(at?[vt,at]:[vt]);
+}
+function teardownPipeline(){
+  state.running=false;var P=state.pipe;
+  if(P){cancelAnimationFrame(P.t);try{if(P.fm)P.fm.close();}catch(e){}try{if(P.seg)P.seg.close();}catch(e){}}
+  if(state.aud){try{state.aud.ctx.close();}catch(e){}state.aud=null;}
+  if(state.rawCameraStream){state.rawCameraStream.getTracks().forEach(function(t){try{t.stop();}catch(e){}});state.rawCameraStream=null;}
+  if(state.bg.url){try{URL.revokeObjectURL(state.bg.url);}catch(e){}}
+  state.bg={type:'none'};state.mask='none';state.pipe=null;state.camOn=false;
+  state.keysReady=false;state.calling=false;
+  try{els.faceInputVideo.srcObject=null;}catch(e){}
+}
+async function ensureAI(kind){
+  var P=state.pipe;if(!P||P[kind]||P[kind+'L'])return;P[kind+'L']=1;
+  var seg=kind==='seg',nm=seg?'selfie_segmentation':'face_mesh';
+  toast(seg?'Memuat AI latar…':'Memuat AI wajah…',2500);
+  var ok=(seg?window.SelfieSegmentation:window.FaceMesh)||await loadJS(MP+nm+'/'+nm+'.js');
+  if(!ok){toast('Gagal memuat AI. Cek koneksi internet.');P[kind+'L']=0;if(seg)state.bg={type:'none'};else state.mask='none';renderBgGrid();renderMaskGrid();return;}
+  var loc={locateFile:function(f){return MP+nm+'/'+f;}};
+  var m=seg?new window.SelfieSegmentation(loc):new window.FaceMesh(loc);
+  if(seg){m.setOptions({modelSelection:1});m.onResults(function(r){var c=P.mc||(P.mc=document.createElement('canvas'));c.width=r.segmentationMask.width;c.height=r.segmentationMask.height;c.getContext('2d').drawImage(r.segmentationMask,0,0);});}
+  else{m.setOptions({maxNumFaces:1,refineLandmarks:true,minDetectionConfidence:.5,minTrackingConfidence:.5});m.onResults(function(r){P.lm=(r.multiFaceLandmarks&&r.multiFaceLandmarks[0])||null;});}
+  await m.initialize();P[kind]=m;
+}
+async function loop(){
+  var P=state.pipe;if(!P||!state.running)return;
+  try{
+    var v=els.faceInputVideo,cam=state.camOn&&v.readyState>=2&&v.videoWidth>0;
+    if(cam){
+      var s=Math.min(1,960/Math.max(v.videoWidth,v.videoHeight)),W=Math.round(v.videoWidth*s),H=Math.round(v.videoHeight*s);
+      if(P.cv.width!==W||P.cv.height!==H){P.cv.width=W;P.cv.height=H;}
+      if(state.bg.type!=='none'){if(P.seg)await P.seg.send({image:v});else ensureAI('seg');}
+      if(state.mask!=='none'){if(P.fm)await P.fm.send({image:v});else ensureAI('fm');}else P.lm=null;
     }
-    els.remoteVideo.play().catch(() => {});
-    els.localVideo.play().catch(() => {});
+    render(cam,v);
+  }catch(e){console.warn(e);}
+  P.t=requestAnimationFrame(loop);
+}
+function cover(c,el,w,h,W,H){var r=Math.max(W/w,H/h),dw=w*r,dh=h*r;c.drawImage(el,(W-dw)/2,(H-dh)/2,dw,dh);}
+function render(cam,v){
+  var P=state.pipe,c=P.x,W=P.cv.width,H=P.cv.height,b=state.bg,seg=cam&&b.type!=='none'&&P.mc;
+  c.save();c.clearRect(0,0,W,H);c.fillStyle='#05070b';c.fillRect(0,0,W,H);
+  if(!cam||seg){
+    if(b.type==='blur'&&cam){var t=P.tmp;t.width=Math.max(8,W>>4);t.height=Math.max(8,H>>4);t.getContext('2d').drawImage(v,0,0,t.width,t.height);c.imageSmoothingQuality='high';c.drawImage(t,0,0,W,H);}
+    else if(b.el){var bw=b.el.videoWidth||b.el.naturalWidth||b.el.width,bh=b.el.videoHeight||b.el.naturalHeight||b.el.height;if(bw&&bh)cover(c,b.el,bw,bh,W,H);}
+  }
+  if(cam){
+    if(seg){var L=P.lay;L.width=W;L.height=H;var l=L.getContext('2d');l.drawImage(P.mc,0,0,W,H);l.globalCompositeOperation='source-in';l.drawImage(v,0,0,W,H);c.drawImage(L,0,0);}
+    else c.drawImage(v,0,0,W,H);
+    if(state.mask!=='none'&&P.lm){try{drawMask(c,P.lm,W,H,state.mask);}catch(e){}}
+  }
+  c.restore();
 }
 
-// ==========================================
-// DRAG PIP
-// ==========================================
-let dragStartX = 0, dragStartY = 0;
-let tapStartTime = 0;
-let initialPointerX = 0;
-let initialPointerY = 0;
-
-els.pipContainer.addEventListener('pointerdown', (e) => {
-  state.isDragging = true;
-  tapStartTime = Date.now();
-  initialPointerX = e.clientX;
-  initialPointerY = e.clientY;
-  const rect = els.pipContainer.getBoundingClientRect();
-  dragStartX = e.clientX - rect.left;
-  dragStartY = e.clientY - rect.top;
-  els.pipContainer.setPointerCapture(e.pointerId);
+// ============ LATAR (blur / preset / foto & video sendiri) ============
+var BGP={studio:['#232a3b','#07090e','Studio'],senja:['#ff8a5c','#5b2a86','Senja'],laut:['#2bb3d1','#06263a','Laut'],hutan:['#1f6f5c','#0a2a22','Hutan'],neon:['#2b0a5e','#00cfe8','Neon']};
+function mkPreset(k){var c=document.createElement('canvas');c.width=c.height=960;var x=c.getContext('2d'),g=x.createLinearGradient(0,0,960,960);g.addColorStop(0,BGP[k][0]);g.addColorStop(1,BGP[k][1]);x.fillStyle=g;x.fillRect(0,0,960,960);var r=x.createRadialGradient(300,260,0,300,260,520);r.addColorStop(0,'rgba(255,255,255,.28)');r.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=r;x.fillRect(0,0,960,960);return c;}
+function setBg(type,el,url,key){
+  var o=state.bg;if(o.url&&o.url!==url){try{if(o.el&&o.el.pause)o.el.pause();URL.revokeObjectURL(o.url);}catch(e){}}
+  state.bg={type:type,el:el,url:url,key:key};renderBgGrid();
+  if(type!=='none'&&!state.camOn)toast('Latar tampil ke pasangan. Nyalakan kamera untuk memisahkan Anda dari latar.',3000);
+}
+function renderBgGrid(){
+  var g=$('bgGrid');if(!g)return;g.innerHTML='';
+  var items=[['none','🚫','Tanpa Latar'],['blur','🌫️','Blur']].concat(Object.keys(BGP).map(function(k){return[k,'🖼️',BGP[k][2]];})).concat([['add','➕','Tambah Foto/Video']]);
+  items.forEach(function(it){
+    var b=document.createElement('button'),k=it[0];
+    b.className='mask-chip'+((state.bg.key||'none')===k||(k==='none'&&state.bg.type==='none')?' active':'');
+    b.innerHTML='<span class="emoji">'+it[1]+'</span>'+it[2];
+    b.addEventListener('click',function(){
+      if(k==='add')return $('bgFile').click();
+      if(k==='none')setBg('none',null,null,'none');else if(k==='blur')setBg('blur',null,null,'blur');else setBg('preset',mkPreset(k),null,k);
+    });
+    g.appendChild(b);
+  });
+}
+$('bgFile').addEventListener('change',function(e){
+  var f=e.target.files[0];if(!f)return;
+  var u=URL.createObjectURL(f),isV=f.type.indexOf('video')===0,el=document.createElement(isV?'video':'img');
+  if(isV){el.loop=true;el.muted=true;el.playsInline=true;el.autoplay=true;el.onloadeddata=function(){el.play().catch(function(){});};}
+  el.src=u;setBg('media',el,u,'media');toast('Latar ditambahkan',1800);e.target.value='';
 });
 
-els.pipContainer.addEventListener('pointermove', (e) => {
-  if (!state.isDragging) return;
+// ============ TOPENG WAJAH (MediaPipe FaceMesh, 468+10 landmark) ============
+var MASKS={
+  none:{name:"Tanpa Topeng",emoji:"🚫"},sunglasses:{name:"Kacamata Hitam",emoji:"🕶️"},anonymous:{name:"Mask Anonim",emoji:"🎭"},
+  mustache:{name:"Kumis",emoji:"👨"},beard:{name:"Jenggot",emoji:"🧔"},kimis:{name:"Kumis Tebal",emoji:"👳"},brewok:{name:"Brewok",emoji:"🦁"},
+  hair:{name:"Rambut Karakter",emoji:"💇"},gajebo:{name:"Topi Fedora",emoji:"🎩"},balaclava:{name:"Balaclava",emoji:"🥷"},
+  child:{name:"Wajah Anak",emoji:"🧒"},female:{name:"Wajah Wanita",emoji:"👩"},male:{name:"Wajah Laki",emoji:"👨"},
+  mystery:{name:"Wajah Misterius",emoji:"🕵️"},fullmask:{name:"Mask Penuh",emoji:"😷"}
+};
+function startFaceMask(k){state.mask=k;toast(state.pipe?'🎭 '+MASKS[k].name+(state.camOn?'':' (nyalakan kamera)'):'🎭 '+MASKS[k].name+' dipilih, aktif saat panggilan video',2200);}
+function stopFaceMask(){state.mask='none';if(state.pipe)state.pipe.lm=null;}
+var OVAL=[10,338,297,332,284,251,389,356,454,323,361,288,397,365,379,378,400,377,152,148,176,149,150,136,172,58,132,93,234,127,162,21,54,103,67,109];
+var LIPO=[61,146,91,181,84,17,314,405,321,375,291,409,270,269,267,0,37,39,40,185],LIPI=[78,95,88,178,87,14,317,402,318,324,308,415,310,311,312,13,82,81,80,191];
+var LEYE=[33,7,163,144,145,153,154,155,133,173,157,158,159,160,161,246],REYE=[362,382,381,380,374,373,390,249,263,466,388,387,386,385,384,398];
+var TEX={},SD=7;
+function rnd(){SD=(SD*16807)%2147483647;return SD/2147483647;}
+function hairTex(col,len,hz){
+  var k=col+len+hz;if(TEX[k])return TEX[k];
+  var c=document.createElement('canvas');c.width=c.height=384;var x=c.getContext('2d');x.fillStyle=col;x.fillRect(0,0,384,384);x.lineCap='round';
+  for(var i=0;i<5500;i++){var px=rnd()*384,py=rnd()*384,l=len*(.5+rnd()),a=hz?[l,(rnd()-.5)*l*.4]:[(rnd()-.5)*l*.4,l];
+    x.strokeStyle=rnd()<.5?'rgba(255,235,210,'+(.04+rnd()*.12)+')':'rgba(0,0,0,'+(.1+rnd()*.25)+')';x.lineWidth=.6+rnd()*1.1;
+    x.beginPath();x.moveTo(px,py);x.quadraticCurveTo(px+a[0]*.5+(rnd()-.5)*6,py+a[1]*.5+(rnd()-.5)*6,px+a[0],py+a[1]);x.stroke();}
+  return TEX[k]=c;
+}
+function drawMask(c,lm,W,H,mk){
+  var L=function(i){return{x:lm[i].x*W,y:lm[i].y*H};},mid=function(a,b,t){return{x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t};};
+  var le=L(33),re=L(263),s=Math.hypot(re.x-le.x,re.y-le.y),th=Math.atan2(re.y-le.y,re.x-le.x),cn=L(168),fw=Math.hypot(L(454).x-L(234).x,L(454).y-L(234).y);
+  var dn={x:-Math.sin(th),y:Math.cos(th)};
+  var ex=function(p,k,d){return{x:cn.x+(p.x-cn.x)*k+dn.x*(d||0)*fw,y:cn.y+(p.y-cn.y)*k+dn.y*(d||0)*fw};};
+  var P=function(a){return a.map(L);},open=Math.hypot(L(13).x-L(14).x,L(13).y-L(14).y)/fw;
+  var path=function(pts,cl){pts.forEach(function(p,i){if(i)c.lineTo(p.x,p.y);else c.moveTo(p.x,p.y);});if(cl!==false)c.closePath();};
+  var ctr=function(a){var x=0,y=0;a.forEach(function(p){x+=p.x;y+=p.y;});return{x:x/a.length,y:y/a.length};};
+  var grow=function(a,k){var q=ctr(a);return a.map(function(p){return{x:q.x+(p.x-q.x)*k,y:q.y+(p.y-q.y)*k};});};
+  var fillTex=function(col,len,hz,polys,alpha){
+    c.save();c.beginPath();polys.forEach(function(p){path(p);});c.globalAlpha=alpha||1;c.shadowColor=col;c.shadowBlur=fw*.03;c.fillStyle=col;c.fill('evenodd');c.shadowBlur=0;
+    c.clip('evenodd');c.translate(cn.x,cn.y);c.rotate(th);c.drawImage(hairTex(col,len,hz),-fw*1.3,-fw*1.3,fw*2.6,fw*2.6);c.restore();};
+  var eyeL=P(LEYE),eyeR=P(REYE),eL=ctr(eyeL),eR=ctr(eyeR),lipHole=P(LIPO);
+  var ob=Math.min(1,Math.hypot(L(159).x-L(145).x,L(159).y-L(145).y)/(s*.07));
+  var jaw=P(OVAL.slice(8,29)).map(function(p){return ex(p,1.05,.015);});
+  var beard=jaw.concat([mid(L(234),L(61),.6)],[61,185,40,39,37,0,267,269,270,409,291].map(L),[mid(L(454),L(291),.6)]);
+  var arc=P(OVAL.slice(29).concat(OVAL.slice(0,8)));
+  var must=function(k,tip){
+    var pp=[98,2,327,291,409,270,269,267,0,37,39,40,185,61].map(L),a=L(61),b=L(291);
+    pp=pp.map(function(p,i){return i<3?{x:p.x-dn.x*k*fw,y:p.y-dn.y*k*fw}:p;});
+    if(tip){var u={x:b.x-a.x,y:b.y-a.y};pp.splice(4,0,{x:b.x+u.x*tip,y:b.y+u.y*tip-fw*.07});pp.push({x:a.x-u.x*tip,y:a.y-u.y*tip-fw*.07});}
+    return pp;};
+  var hair=function(k,hl,side){
+    var out=arc.map(function(p){return ex(p,k,0);}),inn=arc.map(function(p){return mid(p,cn,hl);}).reverse(),pp=out.concat(inn);
+    if(side)pp=[ex(L(234),1.16,.9)].concat(out,[ex(L(454),1.16,.9),ex(L(454),1.02,.25)],inn,[ex(L(234),1.02,.25)]);
+    return pp;};
+  var teeth=function(){
+    if(open<.025)return false;
+    c.save();c.beginPath();path(P(LIPI));c.clip();c.fillStyle='#1a0508';c.fillRect(0,0,W,H);
+    c.fillStyle='#f1ece0';c.fillRect(L(78).x-fw*.1,L(13).y-2,fw*1.2,(L(14).y-L(13).y)*.45);c.restore();return true;};
+  var brow=function(col,w){c.strokeStyle=col;c.lineWidth=fw*w;[[70,63,105,66,107],[300,293,334,296,336]].forEach(function(b){c.beginPath();path(b.map(L),false);c.stroke();});};
+  c.save();c.lineJoin=c.lineCap='round';
+  switch(mk){
+  case 'sunglasses':
+    [[eL,L(234)],[eR,L(454)]].forEach(function(e){c.beginPath();c.moveTo(e[0].x,e[0].y);c.lineTo(e[1].x,e[1].y);c.lineWidth=s*.035;c.strokeStyle='#0a0a0a';c.stroke();});
+    c.beginPath();c.moveTo(eL.x,eL.y);c.lineTo(eR.x,eR.y);c.stroke();
+    [eL,eR].forEach(function(p){c.beginPath();c.ellipse(p.x,p.y,s*.3,s*.21,th,0,6.283);
+      var g=c.createLinearGradient(p.x-s*.3,p.y-s*.2,p.x+s*.2,p.y+s*.2);g.addColorStop(0,'#2e3440');g.addColorStop(.45,'#050608');g.addColorStop(.5,'#0b0d12');g.addColorStop(1,'#000');
+      c.fillStyle=g;c.fill();c.lineWidth=s*.04;c.strokeStyle='#0a0a0a';c.stroke();});break;
+  case 'mustache':fillTex('#2b1a0f',46,0,[must(0,0)]);break;
+  case 'kimis':fillTex('#1b1008',50,0,[must(.045,.55)]);break;
+  case 'beard':fillTex('#2b1a0f',60,0,[beard,lipHole]);fillTex('#2b1a0f',46,0,[must(.01,0)]);break;
+  case 'brewok':fillTex('#1c120a',80,0,[beard.map(function(p){return ex(p,1.04,.05);}),lipHole]);fillTex('#1c120a',56,0,[must(.035,0)]);break;
+  case 'hair':fillTex('#1d130d',70,0,[hair(1.2,.1,0)]);break;
+  case 'gajebo':
+    var t=L(10);c.translate(t.x-dn.x*fw*.12,t.y-dn.y*fw*.12);c.rotate(th);
+    var g2=c.createLinearGradient(0,-fw*.7,0,0);g2.addColorStop(0,'#3a3a44');g2.addColorStop(1,'#0e0e14');c.fillStyle=g2;
+    c.beginPath();c.moveTo(-fw*.42,0);c.bezierCurveTo(-fw*.42,-fw*.75,fw*.42,-fw*.75,fw*.42,0);c.closePath();c.fill();
+    c.fillStyle='#7a1018';c.fillRect(-fw*.42,-fw*.13,fw*.84,fw*.1);
+    c.fillStyle='#0b0b10';c.beginPath();c.ellipse(0,0,fw*.78,fw*.11,0,0,6.283);c.fill();break;
+  case 'anonymous':
+    c.beginPath();path(P(OVAL).map(function(p){return ex(p,1.03,0);}));
+    var g3=c.createLinearGradient(cn.x-fw/2,0,cn.x+fw/2,0);g3.addColorStop(0,'#cfc6b4');g3.addColorStop(.5,'#f6f1e6');g3.addColorStop(1,'#c9bfaa');c.fillStyle=g3;c.fill();
+    c.fillStyle='rgba(225,110,110,.55)';[L(205),L(425)].forEach(function(p){c.beginPath();c.arc(p.x,p.y,fw*.07,0,6.283);c.fill();});
+    c.fillStyle='#08080a';[eyeL,eyeR].forEach(function(e){c.beginPath();path(grow(e,1.25));c.fill();});
+    brow('#08080a',.025);fillTex('#0a0a0c',40,0,[must(.02,.4)]);
+    if(!teeth()){c.beginPath();c.moveTo(L(61).x,L(61).y);c.quadraticCurveTo(L(17).x,L(17).y+fw*.05,L(291).x,L(291).y);c.lineWidth=fw*.02;c.strokeStyle='#222';c.stroke();}break;
+  case 'balaclava':fillTex('#111216',9,1,[P(OVAL).map(function(p){return ex(p,1.14,.04);}),grow(eyeL,2.3),grow(eyeR,2.3)]);break;
+  case 'fullmask':
+    c.beginPath();path(P(OVAL).map(function(p){return ex(p,1.04,.01);}));path(grow(eyeL,1.7));path(grow(eyeR,1.7));
+    var g4=c.createLinearGradient(cn.x-fw/2,cn.y-fw/2,cn.x+fw/2,cn.y+fw/2);g4.addColorStop(0,'#f4f6f8');g4.addColorStop(1,'#aeb8c4');c.fillStyle=g4;c.fill('evenodd');
+    c.beginPath();path(lipHole);path(P(LIPI));c.fillStyle='#b3202e';c.fill('evenodd');teeth();break;
+  case 'mystery':
+    c.beginPath();path(P(OVAL).map(function(p){return ex(p,1.55,.1);}));path(P(OVAL).map(function(p){return ex(p,.98,0);}));c.fillStyle='rgba(12,4,24,.96)';c.fill('evenodd');
+    c.beginPath();path(P(OVAL));c.fillStyle='rgba(0,0,10,.5)';c.fill();
+    c.shadowColor='#ff2244';c.shadowBlur=fw*.12;c.fillStyle='#ff3355';
+    [eL,eR].forEach(function(p){c.beginPath();c.ellipse(p.x,p.y,s*.09,Math.max(1,s*.05*ob),th,0,6.283);c.fill();});break;
+  case 'child':case 'female':case 'male':
+    if(mk==='child')fillTex('#4a2f1c',50,0,[hair(1.12,.3,0)]);
+    if(mk==='female')fillTex('#2a1710',70,0,[hair(1.22,.1,1)]);
+    if(mk==='male'){fillTex('#16100c',36,0,[hair(1.1,.14,0)]);fillTex('#1c130c',20,0,[beard,lipHole],.28);}
+    [L(205),L(425)].forEach(function(p){var g=c.createRadialGradient(p.x,p.y,0,p.x,p.y,fw*.17);g.addColorStop(0,'rgba(255,110,125,'+(mk==='male'?.1:.4)+')');g.addColorStop(1,'rgba(255,110,125,0)');c.fillStyle=g;c.fillRect(p.x-fw*.2,p.y-fw*.2,fw*.4,fw*.4);});
+    brow(mk==='male'?'#120c08':mk==='child'?'#6b4a30':'#1a0e0a',mk==='male'?.05:.03);
+    if(mk==='female'){
+      c.beginPath();path(lipHole);path(P(LIPI));c.fillStyle='rgba(190,25,60,.8)';c.fill('evenodd');
+      c.strokeStyle='#0b0507';c.lineWidth=s*.03;
+      [[33,246,161,160,159,158,157,173,133],[263,466,388,387,386,385,384,398,362]].forEach(function(a){c.beginPath();path(a.map(L),false);c.stroke();});
+      [[le,-1],[re,1]].forEach(function(w){c.beginPath();c.moveTo(w[0].x,w[0].y);c.lineTo(w[0].x+w[1]*s*.1,w[0].y-s*.06);c.stroke();});}
+    if(mk==='child'){
+      c.fillStyle='rgba(120,70,40,.5)';for(var i=0;i<12;i++){var q=L(i%2?205:425);c.beginPath();c.arc(q.x+Math.sin(i*12.9)*fw*.09,q.y-fw*.05+Math.cos(i*7.1)*fw*.04,fw*.007,0,6.283);c.fill();}
+      [[eyeL,468,469,471],[eyeR,473,474,476]].forEach(function(e){var ic=L(e[1]),r=Math.hypot(L(e[2]).x-L(e[3]).x,L(e[2]).y-L(e[3]).y)/2*1.3;
+        c.save();c.beginPath();path(e[0]);c.clip();var g=c.createRadialGradient(ic.x,ic.y,0,ic.x,ic.y,r);g.addColorStop(0,'#1a0f08');g.addColorStop(.7,'#5a3820');g.addColorStop(1,'#120a05');c.fillStyle=g;c.beginPath();c.arc(ic.x,ic.y,r,0,6.283);c.fill();
+        c.fillStyle='rgba(255,255,255,.9)';c.beginPath();c.arc(ic.x-r*.3,ic.y-r*.3,r*.22,0,6.283);c.fill();c.restore();});}
+    break;
+  }
+  c.restore();
+}
+
+// ============ TONES ============
+function getSharedAudioCtx(){
+  if(!state.sharedAudioCtx){
+    try{state.sharedAudioCtx=new (window.AudioContext||window.webkitAudioContext)();}catch(e){return null;}
+  }
+  if(state.sharedAudioCtx.state==='suspended')state.sharedAudioCtx.resume();
+  return state.sharedAudioCtx;
+}
+function playConnectTone(){
+  var ctx=getSharedAudioCtx(); if(!ctx)return;
+  var now=ctx.currentTime;
+  var notes=[523.25,659.25,783.99,1046.5];
+  notes.forEach(function(freq,i){
+    var osc=ctx.createOscillator(),gain=ctx.createGain();
+    osc.type='sine'; osc.frequency.value=freq;
+    var t=now+i*0.13;
+    gain.gain.setValueAtTime(0,t);
+    gain.gain.linearRampToValueAtTime(0.12,t+0.03);
+    gain.gain.exponentialRampToValueAtTime(0.001,t+0.14);
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.start(t); osc.stop(t+0.16);
+  });
+  var shim=ctx.createOscillator(),sg=ctx.createGain();
+  shim.type='triangle'; shim.frequency.value=2093;
+  shim.connect(sg); sg.connect(ctx.destination);
+  sg.gain.setValueAtTime(0,now); sg.gain.linearRampToValueAtTime(0.05,now+0.05); sg.gain.exponentialRampToValueAtTime(0.001,now+0.9);
+  shim.start(now); shim.stop(now+1);
+}
+function playDisconnectTone(){
+  var ctx=getSharedAudioCtx(); if(!ctx)return;
+  var now=ctx.currentTime;
+  var notes=[783.99,587.33,392.00];
+  notes.forEach(function(freq,i){
+    var osc=ctx.createOscillator(),gain=ctx.createGain();
+    osc.type='sine'; osc.frequency.value=freq;
+    var t=now+i*0.1;
+    gain.gain.setValueAtTime(0,t);
+    gain.gain.linearRampToValueAtTime(0.1,t+0.02);
+    gain.gain.exponentialRampToValueAtTime(0.001,t+0.15);
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.start(t); osc.stop(t+0.18);
+  });
+}
+
+// ============ SWAP ============
+function performSwap(){
+  if(!state.localStream)return;
+  state.isSwapped=!state.isSwapped;
+  if(state.isSwapped){
+    els.remoteVideo.srcObject=state.localStream; els.remoteVideo.muted=true;
+    if(state.remoteStream){els.localVideo.srcObject=state.remoteStream;els.localVideo.muted=false;}
+    else els.localVideo.srcObject=null;
+  } else {
+    if(state.remoteStream){els.remoteVideo.srcObject=state.remoteStream;els.remoteVideo.muted=false;}
+    else els.remoteVideo.srcObject=null;
+    els.localVideo.srcObject=state.localStream; els.localVideo.muted=true;
+  }
+  els.remoteVideo.play().catch(function(){});
+  els.localVideo.play().catch(function(){});
+}
+
+// ============ DRAG PIP ============
+var dragStartX=0,dragStartY=0,tapStartTime=0,initPX=0,initPY=0;
+els.pipContainer.addEventListener('pointerdown',function(e){
+  state.isDragging=true; tapStartTime=Date.now();
+  initPX=e.clientX; initPY=e.clientY;
+  var rect=els.pipContainer.getBoundingClientRect();
+  dragStartX=e.clientX-rect.left; dragStartY=e.clientY-rect.top;
+  try{els.pipContainer.setPointerCapture(e.pointerId);}catch(_){}
+});
+els.pipContainer.addEventListener('pointermove',function(e){
+  if(!state.isDragging)return;
   e.preventDefault();
-  let newLeft = e.clientX - dragStartX;
-  let newTop = e.clientY - dragStartY;
-  const maxX = window.innerWidth - els.pipContainer.offsetWidth - 10;
-  const maxY = window.innerHeight - els.pipContainer.offsetHeight - 10;
-  newLeft = Math.max(10, Math.min(newLeft, maxX));
-  newTop = Math.max(60, Math.min(newTop, maxY)); 
-  els.pipContainer.style.left = newLeft + 'px';
-  els.pipContainer.style.top = newTop + 'px';
-  els.pipContainer.style.right = 'auto'; 
+  var nl=e.clientX-dragStartX, nt=e.clientY-dragStartY;
+  var mx=window.innerWidth-els.pipContainer.offsetWidth-10;
+  var my=window.innerHeight-els.pipContainer.offsetHeight-10;
+  nl=Math.max(10,Math.min(nl,mx)); nt=Math.max(60,Math.min(nt,my));
+  els.pipContainer.style.left=nl+'px'; els.pipContainer.style.top=nt+'px'; els.pipContainer.style.right='auto';
+});
+els.pipContainer.addEventListener('pointerup',function(e){
+  state.isDragging=false;
+  try{els.pipContainer.releasePointerCapture(e.pointerId);}catch(_){}
+  var dt=Date.now()-tapStartTime;
+  var dist=Math.hypot(e.clientX-initPX,e.clientY-initPY);
+  if(dt<300&&dist<10)performSwap();
 });
 
-els.pipContainer.addEventListener('pointerup', (e) => {
-  state.isDragging = false;
-  try { els.pipContainer.releasePointerCapture(e.pointerId); } catch(_) {}
-  const timeDiff = Date.now() - tapStartTime;
-  const dist = Math.hypot(e.clientX - initialPointerX, e.clientY - initialPointerY);
-  if (timeDiff < 300 && dist < 10) performSwap();
-});
-
-// ==========================================
-// AUTO-HIDE CONTROLS (8 DETIK)
-// ==========================================
-function resetControlsTimer() {
-  if (!state.callActive) return;
+// ============ AUTO-HIDE ============
+function resetControlsTimer(){
+  if(!state.callActive)return;
   els.controlsBar.classList.remove("hide");
   els.swipeIndicator.classList.remove("visible");
   clearTimeout(state.hideControlsTimer);
-  state.hideControlsTimer = setTimeout(() => {
-    if (state.callActive) {
-      els.controlsBar.classList.add("hide");
-      els.swipeIndicator.classList.add("visible");
-    }
-  }, 8000);
+  state.hideControlsTimer=setTimeout(function(){
+    if(state.callActive){els.controlsBar.classList.add("hide");els.swipeIndicator.classList.add("visible");}
+  },8000);
 }
-function showControlsManually() { resetControlsTimer(); }
+function showControlsManually(){resetControlsTimer();}
+document.addEventListener("touchstart",resetControlsTimer,{passive:true});
+document.addEventListener("mousemove",resetControlsTimer,{passive:true});
+document.addEventListener("click",resetControlsTimer);
+var touchStartY=0;
+els.videoWrap.addEventListener("touchstart",function(e){touchStartY=e.touches[0].clientY;},{passive:true});
+els.videoWrap.addEventListener("touchend",function(e){
+  var te=e.changedTouches[0].clientY;
+  if(touchStartY-te>50&&touchStartY>window.innerHeight*0.6)showControlsManually();
+},{passive:true});
+els.swipeIndicator.addEventListener("click",showControlsManually);
 
-document.addEventListener("touchstart", resetControlsTimer, {passive: true});
-document.addEventListener("mousemove", resetControlsTimer, {passive: true});
-document.addEventListener("click", resetControlsTimer);
-
-let touchStartY = 0;
-els.videoWrap.addEventListener("touchstart", (e) => { touchStartY = e.touches[0].clientY; }, {passive: true});
-els.videoWrap.addEventListener("touchend", (e) => {
-  const touchEndY = e.changedTouches[0].clientY;
-  if (touchStartY - touchEndY > 50 && touchStartY > window.innerHeight * 0.6) showControlsManually();
-}, {passive: true});
-els.swipeIndicator.addEventListener("click", showControlsManually);
-
-// ==========================================
-// 🛡️ CRYPTOGRAPHY (PBKDF2 + ECDH + SHA-512)
-// ==========================================
-async function deriveKeysPBKDF2(a, b, pass) {
-  const pair = [String(a).trim(), String(b).trim()].sort();
-  const material = "KresnaQuantum-v4\u0000" + pair.join("\u0001") + "\u0001" + (pass || "");
-  const enc = new TextEncoder();
-  
-  const keyMaterial = await crypto.subtle.importKey("raw", enc.encode(material), "PBKDF2", false, ["deriveBits"]);
-  const seedBits = await crypto.subtle.deriveBits(
-    { name: "PBKDF2", salt: enc.encode("Kresna-Quantum-Salt-v4"), iterations: 100000, hash: "SHA-512" },
-    keyMaterial, 512
-  );
-  
-  const bytes = new Uint8Array(seedBits);
-  const roomId = "gl-" + bufToHex(bytes.slice(0, 16));
-  const fingerprint = bufToHex(bytes.slice(16, 24)).toUpperCase().match(/.{1,4}/g).join(" ");
-
-  return { roomId, fingerprint, secretBits: seedBits, material: material };
+// ============ CRYPTO ============
+function deriveKeysPBKDF2(a,b,pass){
+  var pair=[String(a).trim(),String(b).trim()].sort();
+  var material="KresnaQuantum-v4\u0000"+pair.join("\u0001")+"\u0001"+(pass||"");
+  var enc=new TextEncoder();
+  return crypto.subtle.importKey("raw",enc.encode(material),"PBKDF2",false,["deriveBits"]).then(function(keyMaterial){
+    return crypto.subtle.deriveBits({name:"PBKDF2",salt:enc.encode("Kresna-Quantum-Salt-v4"),iterations:100000,hash:"SHA-512"},keyMaterial,512);
+  }).then(function(seedBits){
+    var bytes=new Uint8Array(seedBits);
+    var roomId="gl-"+bufToHex(bytes.slice(0,16));
+    var fingerprint=bufToHex(bytes.slice(16,24)).toUpperCase().match(/.{1,4}/g).join(" ");
+    return {roomId:roomId,fingerprint:fingerprint,secretBits:seedBits};
+  });
 }
-
-async function initECDH() {
-  state.ecdhKeyPair = await crypto.subtle.generateKey({ name: "ECDH", namedCurve: "P-256" }, true, ["deriveBits"]);
-  const exportedPub = await crypto.subtle.exportKey("raw", state.ecdhKeyPair.publicKey);
-  state.ecdhPublicKeyHex = bufToHex(exportedPub);
+function initECDH(){
+  return crypto.subtle.generateKey({name:"ECDH",namedCurve:"P-256"},true,["deriveBits"]).then(function(kp){
+    state.ecdhKeyPair=kp;
+    return crypto.subtle.exportKey("raw",kp.publicKey);
+  }).then(function(pub){
+    state.ecdhPublicKeyHex=bufToHex(pub);
+  });
 }
-
-async function processPartnerECDH(partnerPubKeyHex) {
-  try {
-    const partnerPubKeyBuf = hexToBuf(partnerPubKeyHex);
-    const partnerPubKey = await crypto.subtle.importKey("raw", partnerPubKeyBuf, { name: "ECDH", namedCurve: "P-256" }, true, []);
-    state.ecdhSharedSecret = await crypto.subtle.deriveBits({ name: "ECDH", public: partnerPubKey }, state.ecdhKeyPair.privateKey, 256);
-    state.ecdhPartnerReady = true;
-    console.log("🔐 [ECDH] Shared secret didapatkan.");
-  } catch (e) {
-    console.error("❌ [ECDH] Gagal:", e);
-  }
+function processPartnerECDH(partnerPubKeyHex){
+  return hexToBuf(partnerPubKeyHex);
+  // Note: chained below in wireDataConn
 }
-
-async function makeRatchetChain(baseBytes, direction) {
-  const hkdfKey = await crypto.subtle.importKey("raw", baseBytes, "HKDF", false, ["deriveBits"]);
-  const dirBits = await crypto.subtle.deriveBits(
-    { name: "HKDF", hash: "SHA-512", salt: new Uint8Array(0), info: new TextEncoder().encode("kresna-ratchet-" + direction) },
-    hkdfKey, 512
-  );
-  const chainBase = new Uint8Array(dirBits);
-  const hmacKey = await crypto.subtle.importKey("raw", chainBase, { name: "HMAC", hash: "SHA-512" }, false, ["sign"]);
-  const cache = new Map();
-  const enc = new TextEncoder();
-
-  return async function frameKey(n) {
-    const key = String(n);
-    if (cache.has(key)) return cache.get(key);
-    const sig = await crypto.subtle.sign("HMAC", hmacKey, enc.encode("frame:" + n));
-    const keyPromise = crypto.subtle.importKey("raw", sig, "AES-GCM", false, ["encrypt", "decrypt"]);
-    cache.set(key, keyPromise);
-    if (cache.size > 128) cache.delete(cache.keys().next().value);
-    return keyPromise;
-  };
+function processPartnerECDHAsync(partnerPubKeyHex){
+  return crypto.subtle.importKey("raw",hexToBuf(partnerPubKeyHex),{name:"ECDH",namedCurve:"P-256"},true,[])
+    .then(function(pk){
+      return crypto.subtle.deriveBits({name:"ECDH",public:pk},state.ecdhKeyPair.privateKey,256);
+    }).then(function(secret){
+      state.ecdhSharedSecret=secret;
+      state.ecdhPartnerReady=true;
+    }).catch(function(e){console.error("ECDH error:",e);});
 }
-
-async function finalizeEncryptionKeys(pbkdf2SecretBytes) {
-  const combinedMaterial = concatBytes(new Uint8Array(pbkdf2SecretBytes), new Uint8Array(state.ecdhSharedSecret));
-  const enc = new TextEncoder();
-  const masterKey = await crypto.subtle.importKey("raw", combinedMaterial, "HKDF", false, ["deriveBits"]);
-  const mediaBits = await crypto.subtle.deriveBits(
-    { name: "HKDF", hash: "SHA-512", salt: enc.encode("Kresna-Final-Salt-v4"), info: enc.encode("Kresna-Final-Key-v4") },
-    masterKey, 256
-  );
-  state.mediaKeyBytes = new Uint8Array(mediaBits);
-  
-  if (state.isHost) {
-    state.outRatchet = await makeRatchetChain(state.mediaKeyBytes, "h2j");
-    state.inRatchet  = await makeRatchetChain(state.mediaKeyBytes, "j2h");
-  } else {
-    state.outRatchet = await makeRatchetChain(state.mediaKeyBytes, "j2h");
-    state.inRatchet  = await makeRatchetChain(state.mediaKeyBytes, "h2j");
-  }
-  console.log("🔐 [Encryption] Kunci Final (PBKDF2 + ECDH + SHA-512) siap!");
+function makeRatchetChain(baseBytes,direction){
+  var enc=new TextEncoder();
+  return crypto.subtle.importKey("raw",baseBytes,"HKDF",false,["deriveBits"]).then(function(hkdfKey){
+    return crypto.subtle.deriveBits({name:"HKDF",hash:"SHA-512",salt:new Uint8Array(0),info:enc.encode("kresna-ratchet-"+direction)},hkdfKey,512);
+  }).then(function(dirBits){
+    var chainBase=new Uint8Array(dirBits);
+    return crypto.subtle.importKey("raw",chainBase,{name:"HMAC",hash:"SHA-512"},false,["sign"]);
+  }).then(function(hmacKey){
+    var cache=new Map();
+    return function(n){
+      var key=String(n);
+      if(cache.has(key))return cache.get(key);
+      return crypto.subtle.sign("HMAC",hmacKey,enc.encode("frame:"+n)).then(function(sig){
+        return crypto.subtle.importKey("raw",sig,"AES-GCM",false,["encrypt","decrypt"]);
+      }).then(function(keyPromise){
+        cache.set(key,keyPromise);
+        if(cache.size>128){var first=cache.keys().next().value;cache.delete(first);}
+        return keyPromise;
+      });
+    };
+  });
+}
+function finalizeEncryptionKeys(pbkdf2SecretBytes){
+  var combined=concatBytes(new Uint8Array(pbkdf2SecretBytes),new Uint8Array(state.ecdhSharedSecret));
+  var enc=new TextEncoder();
+  return crypto.subtle.importKey("raw",combined,"HKDF",false,["deriveBits"]).then(function(masterKey){
+    return crypto.subtle.deriveBits({name:"HKDF",hash:"SHA-512",salt:enc.encode("Kresna-Final-Salt-v4"),info:enc.encode("Kresna-Final-Key-v4")},masterKey,256);
+  }).then(function(mediaBits){
+    state.mediaKeyBytes=new Uint8Array(mediaBits);
+    var hostP=makeRatchetChain(state.mediaKeyBytes,"h2j");
+    var joinP=makeRatchetChain(state.mediaKeyBytes,"j2h");
+    return Promise.all([hostP,joinP]);
+  }).then(function(chains){
+    if(state.isHost){state.outRatchet=chains[0];state.inRatchet=chains[1];}
+    else{state.outRatchet=chains[1];state.inRatchet=chains[0];}
+  });
 }
 
-// ==========================================
-// 🚨 INTRUSION DETECTION
-// ==========================================
-function triggerIntrusionProtocol() {
-  if (state.intrusionDetected) return;
-  state.intrusionDetected = true;
-  console.log("🚨 [SECURITY] INTRUSION DETECTED! Activating countermeasures.");
-
+// ============ INTRUSION ============
+function triggerIntrusionProtocol(){
+  if(state.intrusionDetected)return;
+  state.intrusionDetected=true;
   els.cyberAlert.classList.remove("hidden");
-  setStatus("🚨 SECURITY BREACH DETECTED", false, true);
-
-  const ip = `${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}`;
-  const tools = ["Wireshark / Ettercap", "MITM Proxy (Burp)", "Aircrack-ng / Bettercap", "Network Sniffer"];
-  els.attackerIp.textContent = ip;
-  els.attackerTool.textContent = tools[Math.floor(Math.random() * tools.length)];
-
-  try {
-    state.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = state.audioContext.createOscillator();
-    const gainNode = state.audioContext.createGain();
-    oscillator.type = 'sawtooth';
-    oscillator.frequency.setValueAtTime(800, state.audioContext.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(1200, state.audioContext.currentTime + 0.5);
-    gainNode.gain.setValueAtTime(0.1, state.audioContext.currentTime);
-    oscillator.connect(gainNode);
-    gainNode.connect(state.audioContext.destination);
-    oscillator.start();
-    state.noiseOscillator = oscillator;
-    setTimeout(() => {
-        if(state.noiseOscillator) {
-            try { state.noiseOscillator.stop(); } catch(e){}
-            state.noiseOscillator = null;
-        }
-    }, 3000);
-  } catch (e) { console.log("Gagal memutar audio sirine:", e); }
-
-  setTimeout(() => {
-    if (state.intrusionDetected && state.callActive) {
-        console.log("🛡️ [SECURITY] Memutus panggilan untuk keamanan.");
-        endCall();
-    }
-  }, 8000);
+  setStatus("🚨 SECURITY BREACH DETECTED",false,true);
+  var ip=Math.floor(Math.random()*255)+"."+Math.floor(Math.random()*255)+"."+Math.floor(Math.random()*255)+"."+Math.floor(Math.random()*255);
+  var tools=["Wireshark / Ettercap","MITM Proxy (Burp)","Aircrack-ng / Bettercap","Network Sniffer"];
+  els.attackerIp.textContent=ip;
+  els.attackerTool.textContent=tools[Math.floor(Math.random()*tools.length)];
+  try{
+    state.audioContext=new (window.AudioContext||window.webkitAudioContext)();
+    var osc=state.audioContext.createOscillator();
+    var gn=state.audioContext.createGain();
+    osc.type='sawtooth';
+    osc.frequency.setValueAtTime(800,state.audioContext.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(1200,state.audioContext.currentTime+0.5);
+    gn.gain.setValueAtTime(0.1,state.audioContext.currentTime);
+    osc.connect(gn); gn.connect(state.audioContext.destination);
+    osc.start();
+    state.noiseOscillator=osc;
+    setTimeout(function(){if(state.noiseOscillator){try{state.noiseOscillator.stop();}catch(e){}state.noiseOscillator=null;}},3000);
+  }catch(e){}
+  setTimeout(function(){if(state.intrusionDetected&&state.callActive)endCall();},8000);
 }
-
-function monitorNetworkForIntrusion(pc) {
-  if (!pc) return;
+function monitorNetworkForIntrusion(pc){
+  if(!pc)return;
   clearInterval(state.intrusionMonitorTimer);
-  
-  state.intrusionMonitorTimer = setInterval(async () => {
-    if (!state.callActive || state.intrusionDetected) return;
-    try {
-      const stats = await pc.getStats();
-      let suspiciousActivity = false;
-      let reason = "";
-
-      stats.forEach(report => {
-        if (report.type === 'inbound-rtp' && report.kind === 'audio') {
-            if (report.packetsLost > 50 || report.jitter > 0.5) {
-                suspiciousActivity = true;
-                reason = "High Jitter/Packet Loss (Possible MITM Injection)";
-            }
+  state.intrusionMonitorTimer=setInterval(function(){
+    if(!state.callActive||state.intrusionDetected)return;
+    pc.getStats().then(function(stats){
+      var bad=false;
+      stats.forEach(function(r){
+        if(r.type==='inbound-rtp'&&r.kind==='audio'){
+          if(r.packetsLost>50||r.jitter>0.5)bad=true;
         }
       });
-
-      if (suspiciousActivity) {
-        console.warn("⚠️ [Monitor] " + reason);
-        triggerIntrusionProtocol();
-      }
-    } catch (e) {}
-  }, 2000);
+      if(bad)triggerIntrusionProtocol();
+    }).catch(function(){});
+  },2000);
 }
 
-// ==========================================
-// FRAME ENCRYPTION
-// ==========================================
-function makeEncryptStream(ratchet, counterObj) {
-  return new TransformStream({
-    async transform(chunk, controller) {
-      try {
-        const n = counterObj.value++;
-        const key = await ratchet(n);
-        const iv = crypto.getRandomValues(new Uint8Array(12));
-        const ct = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, chunk.data);
-        const counterBuf = new Uint8Array(8);
-        new DataView(counterBuf.buffer).setBigUint64(0, BigInt(n));
-        const out = concatBytes(counterBuf, iv, new Uint8Array(ct));
-        chunk.data = out.buffer;
-        controller.enqueue(chunk);
-      } catch (e) {}
-    }
-  });
-}
-function makeDecryptStream(ratchet) {
-  return new TransformStream({
-    async transform(chunk, controller) {
-      try {
-        const buf = new Uint8Array(chunk.data);
-        if (buf.byteLength < 20) return;
-        const view = new DataView(buf.buffer, buf.byteOffset);
-        const n = Number(view.getBigUint64(0));
-        const iv = buf.slice(8, 20);
-        const ct = buf.slice(20);
-        const key = await ratchet(n);
-        const pt = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, ct);
-        chunk.data = pt;
-        controller.enqueue(chunk);
-      } catch (e) {}
-    }
-  });
-}
-async function applyFrameEncryption(pc) {
-  if (!pc || !state.outRatchet || !state.inRatchet) return;
-  const start = Date.now();
-  while (Date.now() - start < 6000) {
-    if (pc.getSenders().some(s => s.track) && pc.getReceivers().length) break;
-    await new Promise(r => setTimeout(r, 120));
-  }
-  let applied = 0;
-  const sendCounter = { value: 0 };
-  try {
-    for (const s of pc.getSenders()) {
-      if (!s.track || typeof s.createEncodedStreams !== "function") continue;
-      try {
-        const { readable, writable } = s.createEncodedStreams();
-        readable.pipeThrough(makeEncryptStream(state.outRatchet, sendCounter)).pipeTo(writable).catch(()=>{});
+// ============ FRAME ENCRYPTION ============
+function hdrLen(c){return c.type==="key"?10:c.type==="delta"?3:1;}
+function makeEncryptStream(ratchet,cnt){return new TransformStream({transform:function(chunk,ctl){
+  var n=cnt.value++,d=new Uint8Array(chunk.data),h=Math.min(hdrLen(chunk),d.length),hd=d.slice(0,h),iv=crypto.getRandomValues(new Uint8Array(12));
+  return Promise.resolve(ratchet(n)).then(function(key){return crypto.subtle.encrypt({name:"AES-GCM",iv:iv,additionalData:hd},key,d.slice(h));}).then(function(ct){
+    var cb=new Uint8Array(8);new DataView(cb.buffer).setBigUint64(0,BigInt(n));
+    chunk.data=concatBytes(hd,new Uint8Array(ct),iv,cb).buffer;ctl.enqueue(chunk);}).catch(function(){});}});}
+function makeDecryptStream(ratchet){return new TransformStream({transform:function(chunk,ctl){
+  var b=new Uint8Array(chunk.data),h=hdrLen(chunk);if(b.length<h+36)return;
+  var t=b.length-20,n=Number(new DataView(b.buffer,b.byteOffset+t+12,8).getBigUint64(0)),iv=b.slice(t,t+12),hd=b.slice(0,h);
+  return Promise.resolve(ratchet(n)).then(function(key){return crypto.subtle.decrypt({name:"AES-GCM",iv:iv,additionalData:hd},key,b.slice(h,t));}).then(function(pt){
+    chunk.data=concatBytes(hd,new Uint8Array(pt)).buffer;ctl.enqueue(chunk);}).catch(function(){});}});}
+function applyFrameEncryption(pc){
+  if(!pc||!state.outRatchet||!state.inRatchet)return;
+  var start=Date.now();
+  var wait=function(){
+    if(Date.now()-start>6000)return;
+    if(pc.getSenders().some(function(s){return s.track;})&&pc.getReceivers().length)return doApply();
+    setTimeout(wait,120);
+  };
+  var doApply=function(){
+    var applied=0;
+    var sendCounter={value:0};
+    pc.getSenders().forEach(function(s){
+      if(!s.track||typeof s.createEncodedStreams!=="function")return;
+      try{
+        var streams=s.createEncodedStreams();
+        streams.readable.pipeThrough(makeEncryptStream(state.outRatchet,sendCounter)).pipeTo(streams.writable).catch(function(){});
         applied++;
-      } catch (e) {}
-    }
-    for (const r of pc.getReceivers()) {
-      if (typeof r.createEncodedStreams !== "function") continue;
-      try {
-        const { readable, writable } = r.createEncodedStreams();
-        readable.pipeThrough(makeDecryptStream(state.inRatchet)).pipeTo(writable).catch(()=>{});
+      }catch(e){}
+    });
+    pc.getReceivers().forEach(function(r){
+      if(typeof r.createEncodedStreams!=="function")return;
+      try{
+        var streams=r.createEncodedStreams();
+        streams.readable.pipeThrough(makeDecryptStream(state.inRatchet)).pipeTo(streams.writable).catch(function(){});
         applied++;
-      } catch (e) {}
-    }
-    state.frameEncActive = applied > 0;
-  } catch (e) {}
-  updateEncryptionBadge();
+      }catch(e){}
+    });
+    state.frameEncActive=applied>0;
+    updateEncryptionBadge();
+  };
+  wait();
 }
-function updateEncryptionBadge() {
-  if (!state.callActive || state.intrusionDetected) return;
-  const layer = state.frameEncActive ? "Quantum Ratchet AES-256 (SHA-512) Active" : "DTLS-SRTP Secure";
-  setStatus("🔒 " + layer, true);
-}
-
-// ==========================================
-// ANTI-CAPTURE
-// ==========================================
-function disableCaptureAPIs() {
-  if (state.captureAPIsDisabled) return;
-  try {
-    window.__gl_MediaRecorder = window.MediaRecorder;
-    window.__gl_getDisplayMedia = navigator.mediaDevices.getDisplayMedia;
-    window.MediaRecorder = function () { throw new Error("Akses Ditolak: Perekaman dinonaktifkan."); };
-    navigator.mediaDevices.getDisplayMedia = function () { return Promise.reject(new Error("Akses Ditolak.")); };
-    try { Object.defineProperty(document, "pictureInPictureEnabled", { value: false, configurable: true }); } catch (_) {}
-    state.captureAPIsDisabled = true;
-  } catch (e) {}
-}
-function restoreCaptureAPIs() {
-  try {
-    if (window.__gl_MediaRecorder) window.MediaRecorder = window.__gl_MediaRecorder;
-    if (window.__gl_getDisplayMedia) navigator.mediaDevices.getDisplayMedia = window.__gl_getDisplayMedia;
-    delete window.__gl_MediaRecorder;
-    delete window.__gl_getDisplayMedia;
-  } catch (e) {}
-  state.captureAPIsDisabled = false;
+function updateEncryptionBadge(){
+  if(!state.callActive||state.intrusionDetected)return;
+  var layer=state.frameEncActive?"Quantum Ratchet AES-256 (SHA-512) Active":"DTLS-SRTP Secure";
+  setStatus("🔒 "+layer,true);
 }
 
-function installAntiCapture() {
-  document.addEventListener("contextmenu", (e) => e.preventDefault());
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "PrintScreen" || e.code === "PrintScreen") {
-      e.preventDefault(); try { navigator.clipboard.writeText(""); } catch (_) {}
-    }
-    if ((e.ctrlKey || e.metaKey) && e.shiftKey && ["s", "p", "3", "4", "5"].includes(e.key.toLowerCase())) {
-      e.preventDefault();
-    }
+// ============ ANTI-CAPTURE ============
+function disableCaptureAPIs(){
+  if(state.captureAPIsDisabled)return;
+  try{
+    window.__gl_MediaRecorder=window.MediaRecorder;
+    window.__gl_getDisplayMedia=navigator.mediaDevices.getDisplayMedia;
+    window.MediaRecorder=function(){throw new Error("Akses Ditolak");};
+    navigator.mediaDevices.getDisplayMedia=function(){return Promise.reject(new Error("Akses Ditolak"));};
+    state.captureAPIsDisabled=true;
+  }catch(e){}
+}
+function restoreCaptureAPIs(){
+  try{
+    if(window.__gl_MediaRecorder)window.MediaRecorder=window.__gl_MediaRecorder;
+    if(window.__gl_getDisplayMedia)navigator.mediaDevices.getDisplayMedia=window.__gl_getDisplayMedia;
+    delete window.__gl_MediaRecorder; delete window.__gl_getDisplayMedia;
+  }catch(e){}
+  state.captureAPIsDisabled=false;
+}
+function installAntiCapture(){
+  document.addEventListener("contextmenu",function(e){e.preventDefault();});
+  document.addEventListener("keydown",function(e){
+    if(e.key==="PrintScreen"||e.code==="PrintScreen"){e.preventDefault();try{navigator.clipboard.writeText("");}catch(_){ }}
+    if((e.ctrlKey||e.metaKey)&&e.shiftKey&&["s","p","3","4","5"].indexOf(e.key.toLowerCase())>=0)e.preventDefault();
   });
-  document.addEventListener("visibilitychange", () => {
-    if (!state.callActive) return;
-    els.call.classList.toggle("blurred", document.hidden);
+  document.addEventListener("visibilitychange",function(){
+    if(!state.callActive)return;
+    els.call.classList.toggle("blurred",document.hidden);
   });
-  window.addEventListener("blur", () => { if (state.callActive) els.call.classList.add("blurred"); });
-  window.addEventListener("focus", () => { els.call.classList.remove("blurred"); });
+  window.addEventListener("blur",function(){if(state.callActive)els.call.classList.add("blurred");});
+  window.addEventListener("focus",function(){els.call.classList.remove("blurred");});
 }
-
-// ==========================================
-// DYNAMIC FINGERPRINT
-// ==========================================
-function startFingerprintTimer() {
-  els.fpValue.textContent = state.fingerprint || "—";
+function startFingerprintTimer(){
+  els.fpValue.textContent=state.fingerprint||"—";
   clearInterval(state.fingerprintTimer);
-  state.fingerprintTimer = setInterval(() => {
-    if (!state.callActive) return;
-    const chars = "0123456789ABCDEF";
-    let newFp = "";
-    for(let i=0; i<4; i++) {
-        for(let j=0; j<4; j++) newFp += chars[Math.floor(Math.random() * 16)];
-        if(i<3) newFp += " ";
-    }
-    els.fpValue.textContent = newFp;
-  }, 8000);
+  state.fingerprintTimer=setInterval(function(){
+    if(!state.callActive)return;
+    var chars="0123456789ABCDEF";
+    var nfp="";
+    for(var i=0;i<4;i++){for(var j=0;j<4;j++)nfp+=chars[Math.floor(Math.random()*16)];if(i<3)nfp+=" ";}
+    els.fpValue.textContent=nfp;
+  },8000);
 }
 
-// ==========================================
-// MEDIA & CALL
-// ==========================================
-async function getLocalMedia(video) {
-  const constraints = {
-    audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, sampleRate: 48000, channelCount: 1 },
-    video: video ? { width: { ideal: 1280 }, height: { ideal: 720 }, frameRate: { ideal: 30, max: 30 }, facingMode: state.facing } : false,
+// ============ MEDIA ============
+function getLocalMedia(video){
+  var c={
+    audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true,sampleRate:48000,channelCount:1},
+    video:video?{width:{ideal:1280},height:{ideal:720},frameRate:{ideal:30,max:30},facingMode:state.facing}:false
   };
-  return navigator.mediaDevices.getUserMedia(constraints);
+  return navigator.mediaDevices.getUserMedia(c);
 }
 
-async function startCallSetup() {
-  const myId = els.myId.value.trim();
-  const partnerId = els.partnerId.value.trim();
-  const pass = els.passphrase.value;
-
-  if (!myId || !partnerId) return toast("ID Telegram wajib diisi.");
-  if (myId === partnerId) return toast("ID Anda dan pasangan tidak boleh sama.");
-
-  state.myId = myId;
-  state.partnerId = partnerId;
-  state.mode = document.querySelector(".mode.active").dataset.mode;
-  state.frameEnc = els.extraEnc.checked && supportsFrameEncryption();
-  state.ended = false;
-  state.isHost = myId.localeCompare(partnerId, undefined, { numeric: true }) < 0;
-  state.intrusionDetected = false;
-  state.isSwapped = false;
-  state.facing = "user";
-  state.speakerActive = false;
+function startCallSetup(){
+  var myId=els.myId.value.trim();
+  var partnerId=els.partnerId.value.trim();
+  var pass=els.passphrase.value;
+  if(!myId||!partnerId)return toast("ID Telegram wajib diisi.");
+  if(myId===partnerId)return toast("ID Anda dan pasangan tidak boleh sama.");
+  state.myId=myId; state.partnerId=partnerId;
+  state.mode=document.querySelector(".mode.active").dataset.mode;
+  state.frameEnc=els.extraEnc.checked&&supportsFrameEncryption();
+  state.ended=false;state.keysReady=false;state.calling=false;state.remoteCaps=null;state.frameEncAgreed=false;
+  state.isHost=myId.localeCompare(partnerId,undefined,{numeric:true})<0;
+  state.intrusionDetected=false;
+  state.isSwapped=false;
+  state.facing="user";
+  state.speakerActive=false;
   initControlIcons();
-
-  els.startBtn.disabled = true;
-  els.startBtn.textContent = "Menghubungkan...";
-
-  try {
-    const keys = await deriveKeysPBKDF2(myId, partnerId, pass);
-    state.roomId = keys.roomId;
-    state.fingerprint = keys.fingerprint;
-    state.pbkdf2Secret = keys.secretBits;
-
-    await initECDH();
-    state.localStream = await getLocalMedia(state.mode === "video");
-  } catch (e) {
-    els.startBtn.disabled = false;
-    els.startBtn.textContent = "Mulai";
-    return toast("Gagal akses kamera/mic: " + e.message, 5000);
-  }
-
-  showScreen("call");
-  
-  els.localVideo.srcObject = state.localStream;
-  els.localVideo.muted = true;
-  
-  const hasVideo = state.localStream.getVideoTracks().length > 0;
-  els.pipContainer.classList.toggle("hidden", !hasVideo);
-  els.audioAvatar.classList.toggle("hidden", hasVideo);
-  
-  els.pipContainer.style.left = 'auto';
-  els.pipContainer.style.right = '16px';
-  els.pipContainer.style.top = '70px';
-
-  setCamUI(hasVideo);
-
-  try { els.localVideo.disablePictureInPicture = true; } catch(_){}
-  try { els.remoteVideo.disablePictureInPicture = true; } catch(_){}
-
-  setStatus("Menghubungkan...");
-  els.fpBox.style.display = "block";
-  els.cyberAlert.classList.add("hidden");
-
-  state.callActive = true;
-  disableCaptureAPIs();
-  startFingerprintTimer();
-  resetControlsTimer();
-  
-  createPeer();
+  els.startBtn.disabled=true;
+  els.startBtn.textContent="Menghubungkan...";
+  // Ensure AudioContext is unlocked by user gesture
+  getSharedAudioCtx();
+  deriveKeysPBKDF2(myId,partnerId,pass).then(function(keys){
+    state.roomId=keys.roomId;
+    state.fingerprint=keys.fingerprint;
+    state.pbkdf2Secret=keys.secretBits;
+    return initECDH();
+  }).then(function(){
+    return getLocalMedia(state.mode==="video");
+  }).then(function(stream){
+    state.rawCameraStream=stream;
+    state.localStream=buildPipeline(stream);
+    showScreen("call");
+    els.localVideo.srcObject=state.localStream;
+    els.localVideo.muted=true;
+    var hasVideo=state.mode==="video";
+    els.pipContainer.classList.toggle("hidden",!hasVideo);
+    els.audioAvatar.classList.toggle("hidden",hasVideo);
+    els.pipContainer.style.left='auto';
+    els.pipContainer.style.right='16px';
+    els.pipContainer.style.top='70px';
+    setCamUI(hasVideo);
+    try{els.localVideo.disablePictureInPicture=true;}catch(_){}
+    try{els.remoteVideo.disablePictureInPicture=true;}catch(_){}
+    setStatus("Menghubungkan...");
+    els.fpBox.style.display="block";
+    els.cyberAlert.classList.add("hidden");
+    state.callActive=true;
+    disableCaptureAPIs();
+    startFingerprintTimer();
+    resetControlsTimer();
+    createPeer();
+  }).catch(function(e){
+    els.startBtn.disabled=false;
+    els.startBtn.textContent="Mulai";
+    toast("Gagal: "+(e&&e.message?e.message:e),5000);
+    console.error(e);
+  });
 }
 
-function createPeer() {
-  const config = {
-    config: {
-      iceServers: [
-        { urls: "stun:stun.l.google.com:19302" },
-        { urls: "stun:stun1.l.google.com:19302" },
-        { urls: "turn:openrelay.metered.ca:80?transport=udp", username: "openrelayproject", credential: "openrelayproject" },
-        { urls: "turn:openrelay.metered.ca:80?transport=tcp", username: "openrelayproject", credential: "openrelayproject" },
-        { urls: "turns:openrelay.metered.ca:443?transport=tcp", username: "openrelayproject", credential: "openrelayproject" }
+function createPeer(){
+  var config={
+    config:{
+      iceServers:[
+        {urls:"stun:stun.l.google.com:19302"},
+        {urls:"stun:stun1.l.google.com:19302"},
+        {urls:"turn:openrelay.metered.ca:80?transport=udp",username:"openrelayproject",credential:"openrelayproject"},
+        {urls:"turn:openrelay.metered.ca:80?transport=tcp",username:"openrelayproject",credential:"openrelayproject"},
+        {urls:"turns:openrelay.metered.ca:443?transport=tcp",username:"openrelayproject",credential:"openrelayproject"}
       ],
-      iceCandidatePoolSize: 10,
-      bundlePolicy: "max-bundle",
-      rtcpMuxPolicy: "require"
+      iceCandidatePoolSize:10,
+      encodedInsertableStreams:true,
+      bundlePolicy:"max-bundle",
+      rtcpMuxPolicy:"require"
     },
-    debug: 1,
+    debug:1
   };
-
-  state.peer = state.isHost ? new Peer(state.roomId, config) : new Peer(undefined, config);
-
-  state.peer.on("open", () => {
-    if (state.isHost) setStatus("Menunggu pasangan...");
-    else { setStatus("Memanggil pasangan..."); connectToHost(); }
+  state.peer=state.isHost?new Peer(state.roomId,config):new Peer(undefined,config);
+  state.peer.on("open",function(){
+    if(state.isHost)setStatus("Menunggu pasangan...");
+    else{setStatus("Memanggil pasangan...");connectToHost();}
   });
-
-  state.peer.on("connection", (conn) => { state.dataConn = conn; wireDataConn(conn, true); });
-  state.peer.on("call", (call) => { 
-    call.answer(state.localStream); 
-    handleCall(call); 
-  });
-  
-  state.peer.on("error", (err) => {
-    if (err.type === "peer-unavailable") {
-      if (!state.isHost && state.callActive) {
+  state.peer.on("connection",function(conn){state.dataConn=conn;wireDataConn(conn,true);});
+  state.peer.on("call",function(call){whenKeys(function(){call.answer(state.localStream);handleCall(call);});});
+  state.peer.on("error",function(err){
+    if(err.type==="peer-unavailable"){
+      if(!state.isHost&&state.callActive){
         setStatus("Pasangan offline. Mencoba ulang...");
         clearTimeout(state.retryTimer);
-        state.retryTimer = setTimeout(connectToHost, 2500);
+        state.retryTimer=setTimeout(connectToHost,2500);
       }
-    } else if (err.type === "unavailable-id") {
+    } else if(err.type==="unavailable-id"){
       setStatus("Menunggu pasangan...");
       clearTimeout(state.retryTimer);
-      state.retryTimer = setTimeout(() => { if (state.callActive) { try { state.peer.destroy(); } catch(e){} createPeer(); } }, 2500);
+      state.retryTimer=setTimeout(function(){
+        if(state.callActive){try{state.peer.destroy();}catch(e){}createPeer();}
+      },2500);
     }
   });
-  state.peer.on("disconnected", () => { if (state.callActive) { try { state.peer.reconnect(); } catch(e){} } });
+  state.peer.on("disconnected",function(){if(state.callActive){try{state.peer.reconnect();}catch(e){}}});
 }
 
-function connectToHost() {
-  if (!state.peer || state.peer.destroyed || !state.callActive) return;
-  try {
-    const conn = state.peer.connect(state.roomId, { reliable: true, serialization: "json" });
-    state.dataConn = conn;
-    wireDataConn(conn, false);
-  } catch (e) {}
+function connectToHost(){
+  if(!state.peer||state.peer.destroyed||!state.callActive)return;
+  try{
+    var conn=state.peer.connect(state.roomId,{reliable:true,serialization:"json"});
+    state.dataConn=conn;
+    wireDataConn(conn,false);
+  }catch(e){}
 }
 
-function wireDataConn(conn, isHost) {
-  conn.on("open", () => {
+function maybeCall(){
+  if(state.isHost||state.calling||!state.keysReady||!state.remoteCaps||!state.peer||!state.localStream)return;
+  state.calling=true;handleCall(state.peer.call(state.roomId,state.localStream));
+}
+function whenKeys(cb,t0){
+  t0=t0||Date.now();if(!state.callActive)return;
+  if((state.keysReady&&state.remoteCaps)||Date.now()-t0>10000)return cb();
+  setTimeout(function(){whenKeys(cb,t0);},100);
+}
+function wireDataConn(conn,isHost){
+  conn.on("open",function(){
     clearTimeout(state.retryTimer);
-    conn.send({ type: "ecdh-init", pubKey: state.ecdhPublicKeyHex });
+    conn.send({type:"ecdh-init",pubKey:state.ecdhPublicKeyHex});
+    conn.send({type:"hello",caps:{frameEnc:!!state.frameEnc}});
   });
-  
-  conn.on("data", async (msg) => {
-    if (!msg || typeof msg !== "object") return;
-    
-    if (msg.type === "ecdh-init" || msg.type === "ecdh-reply") {
-      if (!state.ecdhPublicKeyHex) return;
-      await processPartnerECDH(msg.pubKey);
-      
-      if (msg.type === "ecdh-init" && !isHost) {
-        conn.send({ type: "ecdh-reply", pubKey: state.ecdhPublicKeyHex });
-      }
-      
-      if (state.ecdhPartnerReady && state.pbkdf2Secret) {
-        await finalizeEncryptionKeys(state.pbkdf2Secret);
-        if (!isHost) {
-          handleCall(state.peer.call(state.roomId, state.localStream));
-        }
-      }
-    }
-    
-    if (msg.type === "hello" && isHost) {
-      state.remoteCaps = msg.caps || {};
-      conn.send({ type: "hello-reply", caps: { frameEnc: supportsFrameEncryption() } });
-    }
-    if (msg.type === "hello-reply" && !isHost) {
-      state.remoteCaps = msg.caps || {};
-      state.frameEncAgreed = !!(state.frameEnc && state.remoteCaps.frameEnc);
+  conn.on("data",function(msg){
+    if(!msg||typeof msg!=="object")return;
+    if(msg.type==="hello"){state.remoteCaps=msg.caps||{};state.frameEncAgreed=!!(state.frameEnc&&state.remoteCaps.frameEnc);maybeCall();}
+    if(msg.type==="ecdh-init"&&!state.ecdhPartnerReady&&!state.ecdhBusy){
+      state.ecdhBusy=true;
+      processPartnerECDHAsync(msg.pubKey).then(function(){
+        if(!state.ecdhPartnerReady||!state.pbkdf2Secret)return;
+        return finalizeEncryptionKeys(state.pbkdf2Secret).then(function(){state.keysReady=true;maybeCall();});
+      }).then(function(){state.ecdhBusy=false;},function(){state.ecdhBusy=false;});
     }
   });
-  conn.on("close", () => { if (state.callActive) endCall(); });
+  conn.on("close",function(){if(state.callActive)endCall();});
+}
+function handleCall(call){
+  state.call=call;
+  var pc=call.peerConnection;
+  if(pc&&state.frameEncAgreed&&state.outRatchet&&state.inRatchet)applyFrameEncryption(pc);
+  call.on("stream",function(remoteStream){
+    state.remoteStream=remoteStream;
+    if(state.isSwapped){els.localVideo.srcObject=remoteStream;els.localVideo.muted=false;}
+    else{els.remoteVideo.srcObject=remoteStream;els.remoteVideo.muted=false;}
+    els.remoteVideo.play().catch(function(){});els.localVideo.play().catch(function(){});
+    updateEncryptionBadge();playConnectTone();monitorNetworkForIntrusion(call.peerConnection);
+  });
+  call.on("close",function(){if(state.callActive)endCall();});
+  if(pc)pc.addEventListener("connectionstatechange",function(){if(pc.connectionState==="connected")updateEncryptionBadge();});
 }
 
-function handleCall(call) {
-  state.call = call;
-  call.on("stream", (remoteStream) => {
-    state.remoteStream = remoteStream;
-    
-    if (state.isSwapped) {
-        els.localVideo.srcObject = remoteStream;
-        els.localVideo.muted = false;
-    } else {
-        els.remoteVideo.srcObject = remoteStream;
-        els.remoteVideo.muted = false;
-    }
-    
-    els.remoteVideo.play().catch(()=>{});
-    els.localVideo.play().catch(()=>{});
-    
-    updateEncryptionBadge();
-    
-    if (state.frameEncAgreed && supportsFrameEncryption() && state.outRatchet && state.inRatchet) {
-        applyFrameEncryption(call.peerConnection);
-    }
-
-    monitorNetworkForIntrusion(call.peerConnection);
-  });
-  call.on("close", () => { if (state.callActive) endCall(); });
-  
-  const pc = call.peerConnection;
-  if (pc) {
-    pc.addEventListener("connectionstatechange", () => {
-      if (pc.connectionState === "connected") {
-        updateEncryptionBadge();
-        pc.getStats().then(stats => {
-            stats.forEach(report => {
-                if (report.type === 'candidate-pair' && report.state === 'succeeded') {
-                    const localCandidate = stats.get(report.localCandidateId);
-                    if (localCandidate && localCandidate.candidateType === 'relay') {
-                        console.log("🛡️ [Network] Terhubung via TURN Relay.");
-                    } else {
-                        console.log("⚡ [Network] Terhubung via Direct P2P.");
-                    }
-                }
-            });
-        });
-      }
-    });
-  }
-}
-
-// ==========================================
-// CONTROLS
-// ==========================================
-function toggleMute() {
-  if (!state.localStream) return;
-  const audio = state.localStream.getAudioTracks()[0];
-  if (!audio) return;
-  audio.enabled = !audio.enabled;
+// ============ CONTROLS ============
+function toggleMute(){
+  if(!state.localStream)return;
+  var audio=state.localStream.getAudioTracks()[0];
+  if(!audio)return;
+  audio.enabled=!audio.enabled;
   setMicUI(audio.enabled);
 }
-
-async function toggleCam() {
-  if (!state.localStream) return;
-  
-  let video = state.localStream.getVideoTracks()[0];
-
-  if (!video) {
-    try {
-      const vidStream = await navigator.mediaDevices.getUserMedia({ 
-          video: { facingMode: state.facing, width: { ideal: 1280 }, height: { ideal: 720 } } 
-      });
-      video = vidStream.getVideoTracks()[0];
-      state.localStream.addTrack(video);
-
-      if (state.call && state.call.peerConnection) {
-        const pc = state.call.peerConnection;
-        let sender = pc.getSenders().find(s => s.track && s.track.kind === 'video');
-        if (sender) {
-          await sender.replaceTrack(video);
-        } else {
-          pc.addTrack(video, state.localStream);
-        }
-      }
-
-      if (state.isSwapped) {
-          els.remoteVideo.srcObject = state.localStream; 
-      } else {
-          els.localVideo.srcObject = state.localStream;
-      }
-      
-      els.pipContainer.classList.remove("hidden");
-      els.audioAvatar.classList.add("hidden");
-      
-      els.pipContainer.style.left = 'auto';
-      els.pipContainer.style.right = '16px';
-      els.pipContainer.style.top = '70px';
-
-      state.mode = "video";
-      setCamUI(true);
-
-    } catch (e) {
-      toast("Gagal menyalakan kamera: " + e.message, 4000);
-      return;
-    }
-  } else {
-    video.enabled = !video.enabled;
-    setCamUI(video.enabled);
-  }
+function toggleCam(){
+  if(!state.pipe)return;
+  var vt=state.rawCameraStream&&state.rawCameraStream.getVideoTracks()[0];
+  if(!vt){
+    navigator.mediaDevices.getUserMedia({video:{facingMode:state.facing,width:{ideal:1280},height:{ideal:720}},audio:false}).then(function(s){
+      state.rawCameraStream.addTrack(s.getVideoTracks()[0]);attachCam();state.mode="video";
+      els.pipContainer.classList.remove("hidden");els.audioAvatar.classList.add("hidden");setCamUI(true);
+    }).catch(function(e){toast("Gagal kamera: "+e.message);});
+  } else {state.camOn=!state.camOn;vt.enabled=state.camOn;setCamUI(state.camOn);}
+}
+function flipCamera(){
+  if(state.flipBusy)return;
+  var raw=state.rawCameraStream,old=raw&&raw.getVideoTracks()[0];
+  if(!old){toast("Nyalakan kamera dulu.",2000);return;}
+  state.flipBusy=true;var next=state.facing==="user"?"environment":"user";
+  var open=function(ex){return navigator.mediaDevices.getUserMedia({audio:false,video:{width:{ideal:1280},height:{ideal:720},facingMode:ex?{exact:next}:{ideal:next}}});};
+  old.stop();
+  open(true).catch(function(){return open(false);}).then(function(s){
+    raw.removeTrack(old);raw.addTrack(s.getVideoTracks()[0]);state.facing=next;
+    els.flipBtn.classList.toggle("rear",next==="environment");attachCam();
+  }).catch(function(){toast("Gagal ganti kamera");}).then(function(){state.flipBusy=false;});
 }
 
-// FLIP KAMERA: depan <-> belakang, ikon merah saat kamera belakang aktif
-async function flipCamera() {
-  if (state.flipBusy) return;
-  const old = state.localStream && state.localStream.getVideoTracks()[0];
-  if (!old) { toast("Nyalakan kamera dulu.", 2000); return; }
-  state.flipBusy = true;
-
-  const next = state.facing === "user" ? "environment" : "user";
-
-  const open = async (facing, exact) => {
-    const st = await navigator.mediaDevices.getUserMedia({
-      audio: false,
-      video: {
-        width: { ideal: 1280 }, height: { ideal: 720 },
-        facingMode: exact ? { exact: facing } : { ideal: facing }
-      }
-    });
-    return st.getVideoTracks()[0];
-  };
-
-  const attach = async (nt, wasEnabled) => {
-    nt.enabled = wasEnabled;
-    state.localStream.getVideoTracks().forEach(t => state.localStream.removeTrack(t));
-    state.localStream.addTrack(nt);
-
-    const pc = state.call && state.call.peerConnection;
-    if (pc) {
-      const tr = pc.getTransceivers().find(t => t.receiver && t.receiver.track && t.receiver.track.kind === "video");
-      if (tr && tr.sender) await tr.sender.replaceTrack(nt);
-      else pc.addTrack(nt, state.localStream);
-    }
-
-    const target = state.isSwapped ? els.remoteVideo : els.localVideo;
-    target.srcObject = null;
-    target.srcObject = state.localStream;
-    target.muted = true;
-    target.play().catch(() => {});
-  };
-
-  const wasEnabled = old.enabled;
-  try {
-    // Kamera lama harus dilepas dulu, banyak HP tidak bisa membuka dua kamera sekaligus
-    old.stop();
-    let nt;
-    try { nt = await open(next, true); }
-    catch (e1) { nt = await open(next, false); }
-    if (!nt) throw new Error("Kamera tidak ditemukan");
-    await attach(nt, wasEnabled);
-    state.facing = next;
-    els.flipBtn.classList.toggle("rear", next === "environment");
-  } catch (e) {
-    console.error("[KRESNA FLIP]", e);
-    try { const back = await open(state.facing, false); await attach(back, wasEnabled); } catch (e2) {}
-    toast("Gagal ganti kamera: " + (e && e.message ? e.message : e), 3000);
-  } finally {
-    state.flipBusy = false;
-  }
-}
-
-// SPEAKER: hijau saat loudspeaker ON, merah + garis miring saat MUTE
-async function toggleSpeaker() {
-  if (!els.remoteVideo) return;
-  state.speakerActive = !state.speakerActive;
+function toggleSpeaker(){
+  if(!els.remoteVideo)return;
+  state.speakerActive=!state.speakerActive;
   setSpeakerUI(state.speakerActive);
-
-  if (typeof els.remoteVideo.setSinkId === "function") {
-    try { await els.remoteVideo.setSinkId('default'); } catch (e) {}
+  if(typeof els.remoteVideo.setSinkId==="function"){
+    els.remoteVideo.setSinkId('default').catch(function(){});
   }
 }
 
-// ==========================================
-// 🧨 TOTAL ERASURE (PURGE) + AUTO EXIT
-// ==========================================
-const sleep = (ms) => new Promise(r => setTimeout(r, ms));
-const hx = (n) => Array.from({length:n}, () => Math.floor(Math.random()*256).toString(16).padStart(2,"0")).join(" ");
-
-async function wipeAll() {
-  try { localStorage.clear(); sessionStorage.clear(); } catch(e){}
-  try { if (window.caches) { const ks = await caches.keys(); await Promise.all(ks.map(k => caches.delete(k))); } } catch(e){}
-  try { if (window.indexedDB && indexedDB.databases) { const dbs = await indexedDB.databases(); dbs.forEach(d => d.name && indexedDB.deleteDatabase(d.name)); } } catch(e){}
-  try { document.cookie.split(";").forEach(c => { const n = c.split("=")[0].trim(); if (n) document.cookie = n + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/"; }); } catch(e){}
-  try { if (navigator.serviceWorker) { const rs = await navigator.serviceWorker.getRegistrations(); rs.forEach(r => r.unregister()); } } catch(e){}
-  try { performance.clearResourceTimings(); } catch(e){}
-  try { els.fpValue.textContent = "—"; } catch(e){}
+// ============ PURGE ============
+function hx(n){var s="";for(var i=0;i<n;i++){s+=Math.floor(Math.random()*256).toString(16).padStart(2,"0")+" ";}return s;}
+function wipeAll(){
+  try{localStorage.clear();sessionStorage.clear();}catch(e){}
+  try{if(window.caches)return caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k);}));});}catch(e){}
+  try{if(navigator.serviceWorker)return navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){r.unregister();});});}catch(e){}
+  return Promise.resolve();
 }
-
-function exitApp() {
-  try { if (window.Telegram && window.Telegram.WebApp) window.Telegram.WebApp.close(); } catch(e){}
-  try { window.close(); } catch(e){}
-  // Fallback jika browser menolak menutup jendela
-  setTimeout(() => {
-    const P = $("purge");
-    P.innerHTML = '<div style="margin:auto;text-align:center;color:#00f0ff;letter-spacing:3px;font-size:13px;text-shadow:0 0 14px #00f0ff;padding:24px">🛡️ SESI DIHANCURKAN<br><span style="color:#6a8a9a;font-size:11px;letter-spacing:1px">Zero-Trace selesai. Aman untuk ditutup.</span></div>';
-  }, 700);
+function exitApp(){
+  try{if(window.Telegram&&window.Telegram.WebApp)window.Telegram.WebApp.close();}catch(e){}
+  try{window.close();}catch(e){}
+  setTimeout(function(){
+    var P=$("purge");
+    P.innerHTML='<div style="margin:auto;text-align:center;color:var(--neon);letter-spacing:3px;font-size:13px;padding:24px">🛡️ SESI DIHANCURKAN<br><span style="color:var(--muted);font-size:11px;letter-spacing:1px">Zero-Trace selesai. Aman untuk ditutup.</span></div>';
+  },700);
 }
-
-function runPurge() {
-  const P = $("purge"), log = $("purgeLog"), bar = $("purgeBar"), pct = $("purgePct"),
-        title = $("purgeTitle"), canvas = $("purgeCanvas");
+function runPurge(){
+  var P=$("purge"),log=$("purgeLog"),bar=$("purgeBar"),pct=$("purgePct"),title=$("purgeTitle"),canvas=$("purgeCanvas");
   showScreen("none");
   els.cyberAlert.classList.add("hidden");
   P.classList.remove("exit"); P.classList.add("on");
-  log.innerHTML = ""; bar.style.width = "0"; pct.textContent = "0%";
-  title.classList.remove("done"); title.textContent = "TOTAL ERASURE PROTOCOL";
-
-  // Matrix horizontal (bergerak kiri ke kanan)
-  const ctx = canvas.getContext("2d");
-  const dpr = window.devicePixelRatio || 1;
-  const W = canvas.width = Math.floor(innerWidth * dpr), H = canvas.height = Math.floor(innerHeight * dpr);
-  const fs = 14 * dpr, rows = Math.ceil(H / fs);
-  const xs = Array.from({length: rows}, () => Math.random() * W);
-  const spd = Array.from({length: rows}, () => (0.8 + Math.random() * 2.6) * dpr);
-  const glyphs = "01アイウエオカキクケコサシスセソ<>/{}$#@ABCDEF";
-  let run = true;
-  const draw = () => {
-    if (!run) return;
-    ctx.fillStyle = "rgba(0,0,0,.13)"; ctx.fillRect(0, 0, W, H);
-    ctx.font = fs + "px monospace";
-    for (let r = 0; r < rows; r++) {
-      xs[r] += spd[r];
-      if (xs[r] > W) { xs[r] = -Math.random() * W * 0.3; spd[r] = (0.8 + Math.random() * 2.6) * dpr; }
-      ctx.fillStyle = Math.random() < 0.06 ? "#ff2a55" : (Math.random() < 0.15 ? "#ffffff" : "#00f0ff");
-      ctx.fillText(glyphs[Math.floor(Math.random() * glyphs.length)], xs[r], r * fs + fs);
+  log.innerHTML=""; bar.style.width="0"; pct.textContent="0%";
+  title.classList.remove("done"); title.textContent="TOTAL ERASURE PROTOCOL";
+  var ctx=canvas.getContext("2d");
+  var dpr=window.devicePixelRatio||1;
+  var W=canvas.width=Math.floor(innerWidth*dpr),H=canvas.height=Math.floor(innerHeight*dpr);
+  var fs=14*dpr,rows=Math.ceil(H/fs);
+  var xs=[],spd=[];
+  for(var r=0;r<rows;r++){xs.push(Math.random()*W);spd.push((0.8+Math.random()*2.6)*dpr);}
+  var glyphs="01アイウエオカキクケコ<>/{}$#@ABCDEF";
+  var run=true;
+  var draw=function(){
+    if(!run)return;
+    ctx.fillStyle="rgba(0,0,0,.13)"; ctx.fillRect(0,0,W,H);
+    ctx.font=fs+"px monospace";
+    for(var i=0;i<rows;i++){
+      xs[i]+=spd[i];
+      if(xs[i]>W){xs[i]=-Math.random()*W*0.3;spd[i]=(0.8+Math.random()*2.6)*dpr;}
+      ctx.fillStyle=Math.random()<0.06?"#ff2a55":(Math.random()<0.15?"#ffffff":"#00f0ff");
+      ctx.fillText(glyphs[Math.floor(Math.random()*glyphs.length)],xs[i],i*fs+fs);
     }
     requestAnimationFrame(draw);
   };
   draw();
-
-  // Baris hex/ciphertext bergerak horizontal
-  const tags = ["[MSG]", "[VIDEO]", "[THUMB]", "[IP]", "[DNS]", "[ICE]", "[KEY]", "[CACHE]"];
-  const rowIds = ["hexA", "hexB", "hexC", "hexD"];
-  const fillRows = () => rowIds.forEach((id, i) => {
-    const el = $(id);
-    if (!el) return;
-    if (!el.firstChild) el.appendChild(document.createElement("span"));
-    const sp = el.firstChild;
-    sp.style.animationDuration = (7 + i * 2.5) + "s";
-    sp.style.animationDirection = i % 2 ? "reverse" : "normal";
-    sp.textContent = tags.slice().sort(() => Math.random() - 0.5).slice(0, 4).join(" ▓▒░ ") + " ▸ " + hx(70);
-  });
+  var tags=["[MSG]","[VIDEO]","[THUMB]","[IP]","[DNS]","[ICE]","[KEY]","[CACHE]"];
+  var rowIds=["hexA","hexB","hexC","hexD"];
+  var fillRows=function(){
+    rowIds.forEach(function(id,i){
+      var el=$(id); if(!el)return;
+      if(!el.firstChild)el.appendChild(document.createElement("span"));
+      var sp=el.firstChild;
+      sp.style.animationDuration=(7+i*2.5)+"s";
+      sp.style.animationDirection=i%2?"reverse":"normal";
+      sp.textContent=tags.slice().sort(function(){return Math.random()-0.5;}).slice(0,4).join(" ▓▒░ ")+" ▸ "+hx(70);
+    });
+  };
   fillRows();
-  const hexTimer = setInterval(fillRows, 1200);
-
-  const algos = ["AES-256-GCM", "SHA-512", "HKDF", "ECDH-P256"];
-  const steps = [
-    ["Memutus tunnel P2P & menutup RTCPeerConnection", 700, null],
-    ["Overwrite kunci ratchet AES-256 / SHA-512 dengan byte acak", 900, null],
-    ["Membersihkan cache memori & Cache Storage", 1000, wipeAll],
-    ["Peleburan trafik IP · ICE candidate & rute dilebur", 1100, null],
-    ["Menghapus riwayat percakapan & buffer video", 900, null],
-    ["Menghapus thumbnail, frame cache & snapshot", 900, null],
-    ["Menghapus IP trace, address & domain sesi", 1000, wipeAll],
-    ["Verifikasi 3-pass overwrite · zero-trace", 800, null]
+  var hexTimer=setInterval(fillRows,1200);
+  var steps=[
+    ["Memutus tunnel P2P & menutup RTCPeerConnection",700,false],
+    ["Overwrite kunci ratchet AES-256 / SHA-512 dengan byte acak",900,false],
+    ["Membersihkan cache memori & Cache Storage",1000,true],
+    ["Peleburan trafik IP · ICE candidate & rute dilebur",1100,false],
+    ["Menghapus riwayat percakapan & buffer video",900,false],
+    ["Menghapus thumbnail, frame cache & snapshot",900,false],
+    ["Menghapus IP trace, address & domain sesi",1000,true],
+    ["Verifikasi 3-pass overwrite · zero-trace",800,false]
   ];
-
-  (async () => {
-    for (let i = 0; i < steps.length; i++) {
-      const [label, ms, fn] = steps[i];
-      const line = document.createElement("div"); line.textContent = "▸ " + label + " …"; log.appendChild(line);
-      const code = document.createElement("div"); code.style.color = "rgba(0,240,255,.55)";
-      code.textContent = "   0x" + hx(6).replace(/ /g, "") + " ⇒ 0x000000000000 · " + algos[i % 4];
+  var chain=Promise.resolve();
+  steps.forEach(function(s,i){
+    chain=chain.then(function(){
+      var label=s[0],ms=s[1],doWipe=s[2];
+      var line=document.createElement("div"); line.textContent="▸ "+label+" …"; log.appendChild(line);
+      var code=document.createElement("div"); code.style.color="rgba(0,240,255,.55)";
+      var algos=["AES-256-GCM","SHA-512","HKDF","ECDH-P256"];
+      code.textContent="   0x"+hx(6).replace(/ /g,"")+" ⇒ 0x000000000000 · "+algos[i%4];
       log.appendChild(code);
-      while (log.children.length > 14) log.removeChild(log.firstChild);
-      const from = i / steps.length * 100, to = (i + 1) / steps.length * 100, t0 = performance.now();
-      const tick = setInterval(() => {
-        const k = Math.min(1, (performance.now() - t0) / ms), v = from + (to - from) * k;
-        bar.style.width = v + "%"; pct.textContent = Math.floor(v) + "%";
-      }, 50);
-      try { if (fn) await fn(); } catch(e){}
-      await sleep(ms);
-      clearInterval(tick);
-      line.textContent = "✔ " + label; line.className = "ok";
-    }
-    bar.style.width = "100%"; pct.textContent = "100%";
-    title.textContent = "✔ SEMUA DATA TERHAPUS PERMANEN"; title.classList.add("done");
-    await sleep(1000);
+      while(log.children.length>14)log.removeChild(log.firstChild);
+      var from=i/steps.length*100,to=(i+1)/steps.length*100,t0=performance.now();
+      var tick=setInterval(function(){
+        var k=Math.min(1,(performance.now()-t0)/ms),v=from+(to-from)*k;
+        bar.style.width=v+"%"; pct.textContent=Math.floor(v)+"%";
+      },50);
+      var doFn=doWipe?wipeAll():Promise.resolve();
+      return doFn.then(function(){return sleep(ms);}).then(function(){
+        clearInterval(tick);
+        line.textContent="✔ "+label; line.className="ok";
+      });
+    });
+  });
+  chain.then(function(){
+    bar.style.width="100%"; pct.textContent="100%";
+    title.textContent="✔ SEMUA DATA TERHAPUS PERMANEN"; title.classList.add("done");
+    return sleep(1000);
+  }).then(function(){
     P.classList.add("exit");
-    await sleep(1100);
-    run = false; clearInterval(hexTimer);
+    return sleep(1100);
+  }).then(function(){
+    run=false; clearInterval(hexTimer);
     exitApp();
-  })();
+  });
 }
 
-// ==========================================
-// END CALL (CLEANUP)
-// ==========================================
-function endCall() {
-  if (state.ended) return;
-  state.ended = true;
-  state.callActive = false;
+// ============ END CALL ============
+function endCall(){
+  if(state.ended)return;
+  state.ended=true;
+  state.callActive=false;
   clearTimeout(state.retryTimer);
   clearTimeout(state.hideControlsTimer);
   clearInterval(state.intrusionMonitorTimer);
   clearInterval(state.fingerprintTimer);
-
-  if (state.localStream) { state.localStream.getTracks().forEach(t => { try { t.stop(); } catch(e){} }); state.localStream = null; }
-  if (state.remoteStream) { state.remoteStream.getTracks().forEach(t => { try { t.stop(); } catch(e){} }); state.remoteStream = null; }
-  try { els.remoteVideo.srcObject = null; } catch(e){}
-  try { els.localVideo.srcObject = null; } catch(e){}
-
-  if (state.call) { try { state.call.close(); } catch(e){} state.call = null; }
-  if (state.dataConn) { try { state.dataConn.close(); } catch(e){} state.dataConn = null; }
-  if (state.peer) { try { state.peer.destroy(); } catch(e){} state.peer = null; }
-
-  try { if (state.mediaKeyBytes) state.mediaKeyBytes.fill(0); } catch(e){}
-  state.mediaKeyBytes = null; state.outRatchet = null; state.inRatchet = null;
-  state.pbkdf2Secret = null; state.ecdhSharedSecret = null; state.ecdhKeyPair = null;
-  state.ecdhPublicKeyHex = ""; state.ecdhPartnerReady = false;
-
-  state.fingerprint = ""; state.roomId = ""; state.myId = ""; state.partnerId = "";
-  state.remoteCaps = null; state.frameEnc = false; state.frameEncAgreed = false; state.frameEncActive = false;
-  state.facing = "user";
-  state.speakerActive = false;
-  state.intrusionDetected = false;
-  state.isSwapped = false;
-
-  if (state.noiseOscillator) {
-    try { state.noiseOscillator.stop(); } catch(e){}
-    state.noiseOscillator = null;
-  }
-
+  playDisconnectTone();
+  teardownPipeline();
+  if(state.localStream){state.localStream.getTracks().forEach(function(t){try{t.stop();}catch(e){}});state.localStream=null;}
+  if(state.remoteStream){state.remoteStream.getTracks().forEach(function(t){try{t.stop();}catch(e){}});state.remoteStream=null;}
+  try{els.remoteVideo.srcObject=null;}catch(e){}
+  try{els.localVideo.srcObject=null;}catch(e){}
+  if(state.call){try{state.call.close();}catch(e){}state.call=null;}
+  if(state.dataConn){try{state.dataConn.close();}catch(e){}state.dataConn=null;}
+  if(state.peer){try{state.peer.destroy();}catch(e){}state.peer=null;}
+  try{if(state.mediaKeyBytes)state.mediaKeyBytes.fill(0);}catch(e){}
+  state.mediaKeyBytes=null; state.outRatchet=null; state.inRatchet=null;
+  state.pbkdf2Secret=null; state.ecdhSharedSecret=null; state.ecdhKeyPair=null;
+  state.ecdhPublicKeyHex=""; state.ecdhPartnerReady=false;
+  state.fingerprint=""; state.roomId=""; state.myId=""; state.partnerId="";
+  state.remoteCaps=null; state.frameEnc=false; state.frameEncAgreed=false; state.frameEncActive=false;
+  state.facing="user"; state.speakerActive=false; state.intrusionDetected=false; state.isSwapped=false;
+  if(state.noiseOscillator){try{state.noiseOscillator.stop();}catch(e){}state.noiseOscillator=null;}
   restoreCaptureAPIs();
   els.call.classList.remove("blurred");
   els.cyberAlert.classList.add("hidden");
-  els.fpBox.style.display = "none";
-
-  // Langsung ke layar penghapusan total lalu keluar otomatis
+  els.fpBox.style.display="none";
   runPurge();
 }
 
-// ==========================================
-// BINDINGS
-// ==========================================
-document.querySelectorAll(".mode").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".mode").forEach(b => b.classList.remove("active"));
+// ============ SETTINGS PANEL BINDINGS ============
+function renderThemeGrid(){
+  els.themeGrid.innerHTML="";
+  Object.keys(THEMES).forEach(function(k){
+    var t=THEMES[k];
+    var chip=document.createElement('button');
+    chip.className='theme-chip'+(state.theme===k?' active':'');
+    chip.dataset.theme=k;
+    chip.innerHTML='<span class="swatch" style="background:'+t.c.neon+';box-shadow:0 0 10px '+t.c.neon+'"></span>'+t.name;
+    chip.addEventListener('click',function(){applyTheme(k);});
+    els.themeGrid.appendChild(chip);
+  });
+}
+function renderVoiceGrid(){
+  els.voiceGrid.innerHTML="";
+  Object.keys(VOICES).forEach(function(k){
+    var v=VOICES[k];
+    var chip=document.createElement('button');
+    chip.className='voice-chip'+(state.voice===k?' active':'');
+    chip.innerHTML='<span class="emoji">'+v.emoji+'</span>'+v.name;
+    chip.addEventListener('click',function(){
+      document.querySelectorAll('.voice-chip').forEach(function(c){c.classList.remove('active');});
+      chip.classList.add('active');
+      applyVoiceCharacter(k);
+    });
+    els.voiceGrid.appendChild(chip);
+  });
+}
+function renderMaskGrid(){
+  els.maskGrid.innerHTML="";
+  Object.keys(MASKS).forEach(function(k){
+    var m=MASKS[k];
+    var chip=document.createElement('button');
+    chip.className='mask-chip'+(state.mask===k?' active':'');
+    chip.innerHTML='<span class="emoji">'+m.emoji+'</span>'+m.name;
+    chip.addEventListener('click',function(){
+      document.querySelectorAll('.mask-chip').forEach(function(c){c.classList.remove('active');});
+      chip.classList.add('active');
+      if(k==='none')stopFaceMask();
+      else startFaceMask(k);
+    });
+    els.maskGrid.appendChild(chip);
+  });
+}
+
+function openSettings(){els.settingsPanel.classList.add('open');}
+function closeSettings(){els.settingsPanel.classList.remove('open');}
+els.settingsBtn.addEventListener('click',openSettings);
+els.closeSettings.addEventListener('click',closeSettings);
+
+// ============ BINDINGS ============
+document.querySelectorAll(".mode").forEach(function(btn){
+  btn.addEventListener("click",function(){
+    document.querySelectorAll(".mode").forEach(function(b){b.classList.remove("active");});
     btn.classList.add("active");
   });
 });
-
-els.startBtn.addEventListener("click", startCallSetup);
-els.muteBtn.addEventListener("click", toggleMute);
-els.speakerBtn.addEventListener("click", toggleSpeaker);
-els.camBtn.addEventListener("click", toggleCam);
-els.flipBtn.addEventListener("click", (e) => { e.preventDefault(); flipCamera(); });
-
-// Tutup telepon: hijau tanpa garis -> merah + garis miring saat diklik -> proses penghapusan
-els.endBtn.addEventListener("click", () => {
-  if (state.ended || els.endBtn.classList.contains("pressed")) return;
+els.startBtn.addEventListener("click",startCallSetup);
+els.muteBtn.addEventListener("click",toggleMute);
+els.speakerBtn.addEventListener("click",toggleSpeaker);
+els.camBtn.addEventListener("click",toggleCam);
+els.flipBtn.addEventListener("click",function(e){e.preventDefault();flipCamera();});
+els.endBtn.addEventListener("click",function(){
+  if(state.ended||els.endBtn.classList.contains("pressed"))return;
   els.endBtn.classList.add("pressed");
-  els.endBtn.innerHTML = ICON.phoneOff;
-  setTimeout(endCall, 450);
+  els.endBtn.innerHTML=ICON.phoneOff;
+  setTimeout(endCall,450);
+});
+[els.myId,els.partnerId].forEach(function(el){
+  el.addEventListener("keydown",function(e){if(e.key==="Enter")startCallSetup();});
 });
 
+// ============ INIT ============
 installAntiCapture();
-window.addEventListener("beforeunload", () => {
-  if (state.localStream) state.localStream.getTracks().forEach(t => t.stop());
-  if (state.peer) { try { state.peer.destroy(); } catch(e){} }
+applyTheme('quantum');
+renderThemeGrid();
+renderVoiceGrid();
+renderMaskGrid();
+renderBgGrid();
+
+window.addEventListener("beforeunload",function(){
+  if(state.localStream)state.localStream.getTracks().forEach(function(t){t.stop();});
+  if(state.peer){try{state.peer.destroy();}catch(e){}}
   restoreCaptureAPIs();
 });
-window.addEventListener("pagehide", () => {
-  if (state.localStream) state.localStream.getTracks().forEach(t => t.stop());
-});
-[els.myId, els.partnerId].forEach(el => {
-  el.addEventListener("keydown", e => { if (e.key === "Enter") startCallSetup(); });
+window.addEventListener("pagehide",function(){
+  if(state.localStream)state.localStream.getTracks().forEach(function(t){t.stop();});
 });
 
 })();
